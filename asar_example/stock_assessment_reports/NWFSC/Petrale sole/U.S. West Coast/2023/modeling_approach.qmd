@@ -1,0 +1,98 @@
+## Modeling Approach {#sec-modeling-approach}
+
+### Current Approach {#sec-current-approach}
+
+<!---
+This is a potential automated subsection which will dynamically changed according to the assessment model used to perform the analysis. 
+
+Please provide a short, general overview of platform including reference to the model's paper or online reference.
+--->
+
+The last full assessment of `r params$species` was conducted in 2013 and the most recent update assessment in 2019. The 2019 assessment model was the starting point for this assessment. We retained a number of features of the 2019 assessment and also included a number of improvements related to use of data, model structure and modeling techniques. 
+
+Bridging analysis was conducted to illustrate the impact of incremental changes. Below, we describe the most important changes made since the last assessment:
+
+\begin{enumerate}
+
+\item Upgraded to Stock Synthesis version 3.30.21 (released in February 2023). This is standard practice to capitalize on newly developed features and corrections to older versions as well as improvements in computational efficiency.  No discernible differences were produce by this change.
+
+\item Updated historical and current fishery removals, to include most up to date information. This year WDFW completed historical catch reconstruction of `r params$species` and newly estimated landings are lower than those used in previous assessment. Historical landings in 2013 assessment were based on preliminary estimates and might have included catches from Puget Sound and Canadian waters (pers. comm. T. Tsou, WDFW). New Washington historical landings are more consistent with history of commercial removals on the U.S. West Coast and represent improvement to the assessment. 
+
+\item Removed fishery CPUE time series. This change did not impact the assessment outputs or model fits.
+
+\item Combined Winter and Summer fleets into corresponding annual North and South fleets. The separation of North and South fisheries into the Winter and Summer fleets were primarily motivated by the using the fishery CPUE indices from Winter fisheries, targeting `r params$species` spawning aggregations. With removal of CPUE indices from the model, separation into Winter and Summer fleets was no longer needed. Also, Winter and Summer fleets selectivity curves were very similar within respective fisheries. Combining Winter and Summer fleets within North and South fisheries yielded very similar results. Combining seasonal fleets also removed uncertainty associated with separating historical annual catches by season (since fishing year for Winter fleet was defined from November of previous year through the February of the current year). Finally, using annual catches puts assessment in alignment with management system, which operates on a calendar year basis.  
+
+\item Recalculated survey abundance indices using sdmTMB geostatistical model. Results did not impact the model output.
+
+\item Switched to a single  (s-tri) index (instead of separating it into two indices for early and late survey periods). The  (s-tri) was separated in past assessments due to change in depth and latitudinal coverage of the  (s-tri). Using a single index did not impact model results, but provided a longer historical survey trend and simplified the structure of the assessment model.
+
+\item Updated input sample sizes associated with fisheries composition data to using a function of number of trips and number and fish (rather than number of trips, as in previous assessment), to follow current best practices and ensure a consistent treatment of fishery and survey input data.
+
+\item Updated weight-length, maturity and fecundity parameters, to include most up to date and improved information. Updating weight-length parameters did not produce a noticeable change. Model with new maturity parameters had slightly lower scale as length at 50\% maturity now is slightly higher. With new fecundity parameters, the model produces spawning output rather that spawning biomass, and 2019 model 2023 spawning outputs are no longer comparable. However, relative depletion show similar results.
+
+\item Updated spawn-recruit parameters and fixed Beverton-Holt steepness at 0.8, mean of the Myers prior developed based on meta-analysis of flatfish steepness (Myers et al. 1999). When estimated, steepness was approaching the upper parameter bound of 1 (steepness likelihood profile is included in this report). Limiting steepness to 0.8 did not cause a change in model results, but yielded more reasonable estimates of other life history parameters, including natural mortality.
+
+\end{enumerate}
+
+The list above documents only the most important changes made to this assessment relative to the previous one. 
+
+Despite the large number of changes made to data sources and the model configuration, the results of this assessment are consistent with those done previously.
+
+### Configuration {#sec-configuration}
+
+<!---
+- Time blocks
+- Spatial structure and considerations
+- Growth differnces/morphs
+- Parameters to estimate and parameters to fix
+- Bayesian priors (for which parameters, distributions assumed, and starting values and bounds)
+- Catchability
+- Selectivity
+- Retention
+- Likelihood (penalty, reweighting, ect.)
+--->
+
+The estimated parameters are summarized in a table (not yet in this example) and all estimated and fixed parameters are shown in Tables (not yet in this example). The total number of parameters is reduced from 304 in 2019 to 267 dur to the simplification of the fleet structure into an annual model without separate selectivity for winter and summer. There are 190 estimated recruitment deviations parameters which are divided as follows: 31 parameters set up the initial age structure in 1876, 147 parameters for the recdevs in 1876 to 2022, and 12 forecast recruitment parameters for the years 2023 to 2035. The recevs in the time series are divided into early, main, and late deviations with the main period covering the years 1959 to 2020. However, the distinction between these periods in Stock Synthesis is only relevant if the main period is a zero-centered vector, which it is not in the base model. Sensitivity analyses are used to explore the impact of relaxing the zero-centering and including all recruitment deviations in the main period.-13
+
+The structure of the base model was selected to balance model realism and parsimony. A large number of alternate model formulations were evaluated during the assessment process. Structural choices were made to be as objective as possible and follow generally accepted methods of approaching similar modeling problems and data issues. The relative effect on assessment results of each of these choices is often unknown; however, extensive efforts were made to evaluate effects of structural choices on model output prior to selecting the base model.
+
+Prior to arriving at the base model, an extensive evaluation of model structure was performed. We explored retaining the four-fleet model with seasonal fisheries of the previous assessment versus two-fleet model with annual fisheries. We also explored a single-fleet model (combining North and South fleets), as well as two-area model, with a single set of growth parameters estimated as well as separate growth parameters estimated for each area. These models produced very similar results, yet the annual two-fleet model was found to be the most appropriate for this assessment. The selected formulation allowed to simplify the model structure and resulted in best fit to data and parameters estimates, which are most consistent with current knowledge of `r params$species`, while also accounting for the difference in history of removals among North and South. The simplification of the model allowed to substantially reduce model run time (from several hours to eighteen minutes) and improve final gradient. 
+
+As mentioned earlier, the separation of North and South fisheries into the Winter and Summer fleets in past assessments were primarily motivated by the using the fishery CPUE indices from Winter fisheries, targeting `r params$species` spawning aggregations. With removal of CPUE indices from the model, separation into Winter and Summer fleets was no longer needed. Winter and Summer fleets selectivity curves were very similar within respective fisheries, and combining Winter and Summer fleets within North and South fisheries yielded very similar results. Combining seasonal fleets also removed uncertainty associated with separating historical annual catches by season (since fishing year for Winter fleet was defined from November of previous year through the February of the current year). Finally, using annual catches puts assessment in alignment with management system, which operates on a calendar year basis.  
+
+Substantial amount of efforts within the assessment was devoted to evaluation of the quality of data available for the assessment, and structural choices were made regarding whether and how specific sources (or their components) should be treated in the model. This included decisions on filtering length and age composition data, treatment of survey indices, and decision on how to best use environmental indices in the model.
+
+We also evaluated various blocking schemes applied to fisheries selectivity parameters to enable reflection of changes associated with management measures applied throughout time, and arrive to model that would allow to best fit to data. Specifically, we implemented blocking for the period after IFQ fishery began, that allowed to reflect changes in discard practices. We also re-evaluation early blocking on retention parameters to ensure that estimation of early discard is informed by sufficient amount of data. 
+
+### Sensitivity Analyses {#sec-sensitivity-analyses}
+
+<!---
+Descriptions of which sensitivity analysis to be performed. (i.e. which parameters or data input streams changed in different setups of the model and why)
+--->
+
+[Intentionally left blank]
+
+### Management Benchmarks {#sec-management-benchmarks}
+
+<!---
+Description decisions on management metrics/benchmarks.
+--->
+
+[Intentionally left blank]
+
+### Diagnostics {#sec-diagnostics}
+
+<!---
+Description of which diagnostics will be used.
+--->
+
+[Intentionally left blank]
+
+### Projection Scenarios
+
+<!---
+Description of which projection scenarios will be run and how the projections will be set up.
+--->
+
+[Intentionally left blank]
+

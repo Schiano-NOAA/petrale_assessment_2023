@@ -1,0 +1,140 @@
+## Results
+
+### Parameter Estimates
+
+<!---
+Table of the parameters that were estimated and text interpretation as needed; includes Bayesian parameter fit values.
+--->
+
+Estimated and fixed parameter values are shown in Tables X.
+
+Estimates of key parameters include 
+female $M$ = XX, 
+male $M$ = XX. 
+Females were estimated as growing larger than males with female length at age 17
+(the second reference age) equal to 
+XX cm compared to
+XX cm for males.
+The $L_\infty$ associated with the estimated growth parameters was 
+XX cm for females and
+XX cm for males.
+
+### Recruitment Estimates and Deviations
+
+<!---
+Interpretation of the spawner-recruit curve estimation, challenges or issues, and any interpretation of recruitment deviations (i.e. if there is a pattern indicating regime shift, ect.)
+--->
+
+### Model Fits
+
+<!---
+- Indices
+- Composition data
+- Selectivity and retention
+- Catchability
+- Catch
+- Other metrics (if applicable) - discards, environmental data, ect.
+--->
+
+The model fits the (s-wcgbt) index very well, including a decline from 2005 to 2009 followed by a rapid increase to a plateau in 2013--2017 and a gradual decline to the most recent observations. The observations that fit the least well are 2018 and 2019, which were lower than the years before and after. The absence of a 2020 survey due to the COVID-19 pandemic makes it difficult to determine if those two years were just outliers or if there was some unexplained population dynamics leading to a reduction in available biomass for those years.
+
+When an extra standard deviation parameter was estimated for the (s-wcgbt), the value was minimal, indicating that the index fits well enough to not require additional tuning.
+
+The fit to length composition data was very good for all fleets when aggregating across years. The most visible lack of aggregate fit occurring for discards in the south, where the mode of the observed and expected distributions differed by 2 cm (30 cm vs 28 cm, respectively). However, the tails of the distribution were fit well. Pearson residuals for the individual years show short periods with notable residual patterns, such as 1975 and 1982--1983 for the North fleet suggesting unmodeled short-term dynamics in the fleet or population. However, there are not strong patterns within any group of length bin (horizontal stripes within the Pearson plots) indicating a systematic lack of fit.
+
+Expected mean length in each year matches both long-term and short-term trends. However, a notable lack of fit in this diagnostic is for the 2021 (s-wcgbt) where the largest haul in the history of the survey took place which was dominated by large females, resulting in an outlier in the observed mean lengths.
+
+The fit to the marginal age composition data was good for the North fleet when aggregated across years, but less good for the South. The North fleet has far more age data due to large gaps in the years with samples from California and smaller sample sizes per year. The years 2018--2022 have the highest sample sizes and are characterized by older than expected fit. Examination of the distributions of ages within each length bin indicates that these fish are older than expected given their lengths.
+
+Fit to the conditional age-at-length (CAAL) data for the (s-wcgbt) was generally good, with a few notable clusters of residuals in 2005 (younger than expected fish in the 30--40cm range), 2014 (more young fish in the smaller length bins), and the last few years, where there are more old fish of both sexes in the larger length bins.
+
+This pattern of positive residuals for the oldest ages matches the lack of fit to the fishery ages for these years as well. Time varying growth was explored to resolve this lack of fit but did not substantially improve the fit. The likelihood profiles indicate that all the age comps are best fit at smaller natural mortality values than the estimated value which incorporates other data sources. The mean age of the population is estimated to be higher in recent years than at any point since the early 1970s when age data weren't available, so the lack of fit to old ages may be only notable for these recent years because they are the only period with samples of the oldest age bins.
+
+Fit to the discard rates and and mean body weight of the discards was good thanks to consistently low and stable rates and the use of time blocks on the retention parameters to fit the years with significant change. A change in blocking for retention in the South fleet relative to the 2019 assessment (baseing historical period on retention up through 2010 rather than just 2002) resulted in lower and more plausible estimates of discard rates and total discards for the period prior to the availability of observer data for the South fleet.
+
+### Model Diagnostics
+
+<!---
+Where applicable:
+- Bridging analysis
+- Correlation analysis
+- Profile likelihoods
+- Jitter analysis
+- Retrospective analysis
+--->
+
+### Convergence
+
+A number of tests were performed to verify convergence of the base model, facilitated by the (nwfscDiags) package in R [@wetzel_nwfscdiag_2023]. Following conventional AD Model Builder methods (Fournier et al. 2012), we checked that the Hessian matrix for the base model was positive-definite. There were no difficulties in inverting the Hessian to obtain estimates of variability. We also confirmed that the final gradient is below 0.001. The gradient was even further reduced using hess_step, a recent option in ADMB and SS3, allowing to use the Hessian information to fit the true best fit to the data. 
+
+To confirm that the reported estimates were from the global best fit, we evaluated the model's ability to recover similar likelihood estimates when initialized from dispersed starting points (jitter option in SS3). Starting parameters were jittered using a setting of 0.05 for 100 iterations. This perturbs the initial values used for minimization with the intention of causing the search to traverse a broader region of the likelihood surface. The majority (62 out of 100) returned to the same objective function value as the base model. The remaining runs exhibited worse fit than the base model. The spread of this search indicates that the jitter was sufficient to search a large portion of the likelihood surface, and that the base model is in a global minimum.
+
+### Sensitivity Analyses
+We performed a number of sensitivity analyses on the base assessment model, to evaluate the base model's response to change in key parameters and model components.The sensitivity analyses were divided into five groups: indices, composition data, biology, recruitment and environmental index, and the transboundary nature of the stock.
+
+These groups included the following runs:
+
+- Indices
+  - Estimating separate catchability parameter and separate selectivity parameters for the late (s-tri) period.
+  - Excluding (s-tri) 2004 observation.
+  - Allowing (s-tri) selectivity to be dome-shaped.
+  - Estimating extra standard deviation for the (s-wcgbt)
+  - Including fisheries CPUEs in the model.
+
+- Composition data
+  - Tuning the sample sizes using the Dirichlet-Multinomial likelihood.
+  - Early surface read ages are included and retuned.
+  - Early ages from Oregon marked "special request" are excluded.
+
+- Biology
+  - Weight-Length relationship from 2019 assessment.
+  - Maturity parameters from 2019 assessment.
+  - Estimating age-0 fraction female within the model.
+  - Estimating age-0 fraction female with no sex offset on the (s-wcgbt) selectivity parameters.
+
+- Recruitment
+  - Incorporating environmental index of `r params$species` recruitment based on CMEMS.
+  - Using zero-centered recruitment deviations settings.
+  - Nor separating early/main/late periods for recruitment deviations.
+
+- Transboundary nature of the stock
+  - Adding the West Coast Vancouver Island (WCVI) synoptic bottom trawl survey index to the assessment model.
+  - Adding `r params$species` catches from British Columbia waters to the North fishing fleet.
+  - Adding both index and catches to the base model.
+
+Sensitivities to alternative assumptions regarding treatment of index data had little discernible difference on the population trajectory.
+
+The Dirichlet-Multinomial data weighting method led to weights of 97--99% of the input sample sizes for all composition data other than the (s-wcgbt) which had an applied weight of 74% of the input sample sizes. These weights are far higher than the weights used in the base model calculated using the Francis method and resulted in much more variability in the recruitment time series and relatively less weight applied to the index data. Model runs with the early surface reads included or the early Oregon 'special request' samples excluded similarly led to a less plausible recruitment time series.
+
+Using weight-length and maturity parameters from 2019 model did not impact model results. Exploring alternatives for estimating age-0 fraction female were motivated by the explorations of sex ratios discussed in Section not in example. However, the model with fraction female estimated and sex-specific selectivity results in an estimate of 62% female at birth, contrary to the patterns in the data and the patterns in other flatfish indicating confounding with the selectivity parameters. When the sex offset in selectivity was removed for the (s-wcgbt), the estimate was 47% and the total likelihood was worse by about 30 units of log-likelihood due to degraded fits to the length composition data.
+
+Trajectories of all the runs from recruitment sensitivity group were similar. The recruitment estimates in the model with environmental index included, are virtually the same over the most time series, well-informed by the age structure data, but diverge in most recent period, which includes most recent few years, for which youngest cohorts may be not yet selected by either surveys or fisheries . For those few years, the environmental index becomes more influential, as it can provide additional information, not captured by other sources. This is the expected result from a recruitment index: that it is most influential in the recent years for the cohorts that have not yet been observed in the composition data.
+
+Results of this sensitivity run, therefore, emphasizes the importance of progress in generating an environmental recruitment index and getting it vetted through either peer-review publication or SSC review, so that it might be used with confidence in the assessment.
+
+Studies on stock structure and movement of `r params$species` indicating transboundary movement of `r params$species` between U.S. and Canadian waters. Addition survey and catches from British Columbia waters to the base model did not cause a conflict among data sources from United States and Canada. The index from the synoptic bottom trawl survey conducted on the West Coast Vancouver Island (WCVI) since 2004 is consistent with the (s-wcgbt) index conducted on the U.S. West Coast. Estimated stock trajectories did not change in any of the alternative runs. As expected, with Canadian catches added, initial spawning output increased.
+
+### Retrospective Analysis
+
+A five-year retrospective analysis was conducted by successively removing years of data starting from 2022 (i.e., "Data -1 Years" corresponds to data through 2021 instead of 2022). The estimated spawning output exhibited small changes in the initial equilibrium and the final few years of the model. These changes are driven primarily by the fit to the (s-wcgbt), where the combination of the lower observed index in 2018 and 2019 and the absence of a survey in 2020 resulted in the Data-2 through Data-4 retrospectives to a more steeply declining trend at the end of the time series.
+
+### Historical Analysis
+The second type of retrospective analysis addresses assessment error, or at least in the historical context of the current result, given previous analyses. Figure X illustrates the comparison of biomass time series across multiple previous assessments and shows that the base model output follows the same trajectory as previous assessment and estimate stock scale  is in the middle range of previous assessments.
+
+### Likelihood Profiles
+
+Likelihood profiles were conducted for $R_0$, steepness, and female natural mortality values separately. These likelihood profiles were conducted by fixing the parameter at specific values and estimating the remaining parameters based on the fixed parameter value. The priors for all parameters, including the parameter being profiled, were included in every likelihood model. For example, including the prior on natural mortality across the profiled values of natural mortality provides information on the likelihood contribution of that prior as if it were estimated in the model.  
+
+The results of the likelihood profile analysis on $R_0$ are shown in Figure X. The negative log-likelihood is optimized at a value of XX for the base model, with the age data best fit at a slightly lower value and hte length comps fit slightly higher. The starting and ending biomass and associated fraction unfished are relatively insensitive to changes in $R_0$ indicating that other parameters, like natural mortality, are compensating for changes along the profile.
+
+The likelihood profile for steepness shows that the negative log-likelihood for the base model declines with increasing steepness up to an MLE estimate around 0.96 with a flat profile from there up to 1.0. The model with this steepness value was considered unrealistic as it was associated with less plausible estimates natural mortality around 0.10 (compared to base model estimates of XX for females). Spawner-recruit steepness in the model was fixed at 0.8, which is the Myers prior for Pleuronectidae based on meta-analysis of flatfish steepness [@myers_maximum_1999]. The starting and ending biomass and associated fraction unfished show almost no change across a wide range of steepness values.
+
+Natural mortality is estimated in this assessment using meta-analytical prior [@hamel_method_2015; @hamel_development_2022]. Change in the negative log-likelihood across a range of female natural mortality values is shown in Figure X. The starting and ending biomass and associated fraction unfished were more sensitive to the changes in female $M$ than the other profile parameters. The dashed line Figure X shows the total likelihood without the prior on female $M$ included, but this underestimates the influence of the priors because there remains a prior on male $M$ and the two parameters are highly correlated. Treating male $M$ as an offset or profiling in two dimensions over both $M$ parameters would be good ways to explore the influence of the priors on estimates of $M$ for this model.
+
+### Sensitivity Analysis
+
+<!---
+Results and comparison with the base model; each scenario result and what was changed; please include key metrics from each scenario such as steepness (h), R0, Bcurrent, Fcurrent, F/Fmsy, B/Bmsy, ect.
+--->
+
+[Intentionally left blank]

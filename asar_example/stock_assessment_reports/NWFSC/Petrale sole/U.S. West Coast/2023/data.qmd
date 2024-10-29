@@ -1,0 +1,113 @@
+## Data {#sec-data}
+
+<!---
+Include the following:
+- Temporal and spatial resolutions and number of samples
+- Stock ID (more detailed description if appropriate and qualitative studies or data are behind the decision making)
+- Life history (growth, maturity, fecundity, natural mortality, meristics, ect.)
+- Landings (retained catch and discards)
+- Indices and standardization (fishery dependent and independent)
+- Composition data - age, length (Description, ageing error, reweighting)
+- Absolute abundance (if applicable)
+- Environmental/ecosystem indicator data
+- Reweighting or effective sample size adjustments
+--->
+
+Data comprise the foundational components of stock assessment models.
+The decision to include or exclude particular data sources in an assessment model depends on many factors.
+These factors often include, but are not limited to,
+the way in which data were collected (e.g., measurement method and consistency);
+the spatial and temporal coverage of the data;
+the quantity of data available per desired sampling unit;
+the representativeness of the data to inform the modeled processes of importance;
+timing of when the data were provided;
+limitations imposed by the Terms of Reference; and
+the presence of an avenue for the inclusion of the data in the assessment model. 
+Attributes associated with a data source can change through time,
+as can the applicability of the data source when different modeling approaches are explored (e.g., stock structure or time-varying processes).
+Therefore, the specific data sources included or excluded from this assessment should not necessarily constrain the selection of data sources applicable to future stock assessments for `r params$species`.
+Even if a data source is not directly used in the stock assessment they can provide valuable insights into biology, fishery behavior, or localized dynamics.
+
+Data from a wide range of programs were available for possible inclusion in the current assessment model.
+Descriptions of each data source included in the model and sources that were explored but not included in the base model are provided below.
+Data that were excluded from the base model were explicitly explored during the development of this stock assessment or have not changed since their past exploration in a previous `r params$species` stock assessment.
+In some cases, the inclusion of excluded data sources were explored through sensitivity analyses (see @sec-sensitivity-analyses).
+
+## Fishery-Dependent Data
+
+Fishery removals in this assessment were divided between two fleets: 1) North and 2) South. Landings for Washington and Oregon are summed into a single North fleet (consistent with previous several assessments) due to the fact that vessels commonly fish and land in each other's waters and ports. Landings for the South feet are defined as fish landed in California ports.
+
+The landings of `r params$species` are made primarily by groundfish bottom trawl gear; landings by gear types other than bottom trawl have been inconsequential, averaging less than 2.5% of the coastwide landings. All non-trawl landings are included along with the trawl landings. Recreational catch is inconsequential and not accounted for in this assessment.
+
+### Commercial Fishery Landings
+
+#### Recent Landings
+
+Recent commercial landings of `r params$species` (1981--2022 for California and Washington; 1987--2022 for Oregon) were obtained from (pacfin), a regional fisheries database that manages fishery-dependent information in cooperation with West Coast state agencies and (nmfs). Catch data were extracted from (pacfin) on June 12, 2023, by state and then combined into the fishing fleets used in the assessment.
+
+#### Historical Landings
+
+Historical landings of `r params$species` were reconstructed by state, by year. 
+
+The Washington historical landings (1938--1980) were provided by Washington Department of Fish and Wildlife, who recently conducted historical catch reconstruction for `r params$species` (pers. comm. T. Tsou and G. Lippert, (wdfw). The new reconstruction of Washington historical landings utilizes several historical sources, including Alverson and Chatwin (1957), who reported `r params$species` landings in Washington ports for the 1938-1947 period, and Ward et al. (1969), who reported `r params$species` landings for the 1948-1969 period. Both sources reported Washington `r params$species` landings that were caught off the United States and Canada. Alverson and Chatwin (1957), however, also reported Washington landings by area of catch for a subset of years (1948-1955) that were informed by historical tagging study. Washington `r params$species` landings caught off U.S. west coast from Alverson and Chatwin (1957) were used for the period between 1948 and 1955 by year, and an average proportion of landings caught off U.S. west coast across 1948-1955 period (11.6\%) was used to apportion the `r params$species` Washington landings between U.S. and Canada for the rest of years within the 1938-1969 period. For 1970-1980, Washington landings are from area-specific fish receiving tickets (pers. comm. T. Tsou, WDFW). A linear interpolation was applied between landings in 1938 and zero landings in 1930. 
+
+The  Oregon historical landings (1896--1986) were obtained from Oregon historical catch reconstruction, conducted by Oregon Department of Fish and Wildlife in collaboration with NWFSC [@karnowski_historical_2014]. 
+
+The California historical landings were informed by several sources. Landings from the most recent "historical" period (between 1969 and 1980) were available from the (calcom) database. Earlier landing records (between 1931 and 1968) were reconstructed by the Southwest Fisheries Science Center  [@ralston_documentation_2010]. Ralston et al. (2010) included only catches made in waters off California and landed in California ports, therefore Ralston et al. (2010) estimates were supplemented by catches landed in California, but made in waters off Oregon and Washington, provided by the SWFSC (pers. comm. E.J. Dick, SWFSC). The earliest California landings were obtained from California Department of Fish and Game (CDFW) Fish Bulletins for 1916--1930 landings [@heimann_pacific_1970] as reconstructed by Lai et al. [-@lai_stock_2005] and used in previous assessments. The California fishery began in 1876, but no landings data are available from 1876--1915. Therefore, consistent with previous `r params$species` assessments, a linear interpolation between landings of 1 ton in 1879 and the landings recorded for 1916 were used to filling this period.
+
+Comparison of `r params$species` historical landings by state and fleet between this and 2019 assessment is provided. Historical Oregon and California landings did not change. Slight discrepancies between California landings used in the 2019 and 2023 assessments are caused by the fact that fishing year in 2019 model was defined from November of previous year to October of current year, since North and South fleets were further divided into Winter and Summer fisheries. We did not have access to original annual landings used in 2013 full assessment and then in 2019 update assessment, and therefore comparison between California landings used in the 2019 and 2023 assessments is approximate, but still able to illustrate that California landings did not change. The noticeable difference in this assessment from 2019 model is in Washington landings. This year Washington Department of Fish and Wildlife completed historical catch reconstruction of `r params$species`, and newly estimated landings are lower than those used in previous assessment. Historical landings in 2013 assessment were based on preliminary estimates and might have included catches from Puget Sound and Canadian waters (pers. comm. T. Tsou, WDFW). New Washington historical landings are more consistent with history of commercial removals on the U.S. West Coast and represent improvement to the assessment.
+
+### Discard
+
+Data on discards of `r params$species` are available from two different data sources. In 2002, the West Coast Groundfish Observer Program (WCGOP) was implemented on the West Coast of the United States, which began with gathering bycatch and discard information for the limited entry trawl and fixed gear fleets. Observer coverage has expanded to include the California halibut trawl, the nearshore fixed gear and pink shrimp trawl fisheries. 
+
+Since 2011, trawl fisheries have been managed with catch shares under a system of annual individual fishing quotas (IFQs) for the shoreside sector (i.e., vessels delivering to shoreside processors) and harvest cooperatives for the at-sea hake sectors (catcher-processors who catch and process hake at sea; and Motherships, factory processors that take delivery of hake from catcher vessels at sea). Constant monitoring of catch using observers or electronic monitoring (EM) is required to participate in the trawl catch share fishery.
+
+Table X shows the discard ratios (discarded/(discarded + retained)) of `r params$species` from WCGOP based on observer observations. The discarding rate of `r params$species` within this data-set has always been relatively low.  Discard rates were obtained for both the catch share and the non-catch share sector for `r params$species`. 
+
+The vast majority of removals was made within the catch share fleet, and therefore, discard rates from the catch share sector was used for the periods after 2011. Coefficients of variation were calculated for the pre-catch share years by bootstrapping vessels within ports because the observer program randomly chooses vessels within ports to be observed. The coefficient of variation of discarding in the catch share fleet, given nearly 100% observer coverage, was considered low and a value of 0.015 was assumed. 
+
+The historical source (often referred to as the Pikitch data) comes from a study by Ellen Pikitch that collected trawl discards from 1985--1987 [@pikitch_evaluation_1988]. The study was conducted off the coast of Washington and Oregon with no participating vessels fishing off the coast of California [@pikitch_evaluation_1988; @rogers_numerical_1992]. Therefore, this source of discard data is only relevant to North fleet. Participation in the study was voluntary and included vessels using bottom, midwater, and shrimp trawl gears. Observers of normal fishing operations on commercial vessels collected the data, estimated the total weight of the catch by tow, and recorded the weight of species retained and discarded in the sample. The discard ratios (discarded/(discarded + retained)) from the Pikitch data were obtained from NWFSC (pers. comm. J. Wallace, NWFSC).
+
+WCGOP provided estimates of discard mean body weight, and these data were used in this assessment for each fishing fleet. 
+.
+
+### Fishery Length and Age Data
+
+The fishery length and age data for North fleet were obtained from (pacfin) Biological Data System (BDS) database and contained data from Oregon and Washington. For South fleet, length and age data were obtained from (pacfin) BDS database and also from the (calcom). The latter were provided by (cdfw) (pers.comm. B. Erwin, (psmfc) as the (calcom) samples for flatfish collected before 1990 are not included in (pacfin) at this time. The fishery length and age samples were collected by port samplers.
+
+Length bins from 12 to 62 cm in 2 cm increments were used to summarize the length frequency of the catches in each year. The first length bin includes all observations less than 14 cm and the last bin includes all fish 62 cm and longer. Age distributions included bins from age 1 to age 17, with the first bin including all fish ages 0 and 1 and the last bin including all fish age 17 and above.
+
+Commercial length-frequency distributions were developed for each fleet and year, for which observations were available. Females and males distributions were treated separately, to track sex-specific differences. For each fleet, the raw observations (compiled from the (pacfin) and (calcom) databases) were expanded to the trip level, to account for differences in samples sizes relative catch weights among trips (first stage expansion). The expanded length observations were then further expanded to state level, to account for differences in sampling intensity of `r params$species` landings among states combined into a single fleet (second stage expansion). The expansion algorithm can be illustrated with the following equation:
+
+\begin{centering}
+
+$N_{b,j,y} = \displaystyle\sum_{s=1}^{s=k}\displaystyle\sum_{t=1}^{t=n}L_{b,j,t} \cdot
+\left(\frac{LC_t}{SC_t}\right) \cdot \left(\frac{LC_{s,y}}{SC_{s,y}}\right)$
+
+\end{centering}
+
+Were $N_{b,j,y}$ is the number of lengths in each length bin ($b$) by sex ($j$) and year ($y$) within each fleet. $L_{b,j,t}$ represents an individual length sample by bin ($b$) and sex ($j$) within an individual fishing trip ($t$). As the first stage expansion, $L_{b,j,t}$ was multiplied by the ratio of landed catch ($LC_t$) within that trip ($t$) to portion of catch sampled for lengths ($SC_t$) within the same trip ($t$). In the second stage expansion, the individual length sample ($L_{b,j,t}$) was multiplied by the ratio of landed catch ($LC_{s,y}$) within individual state ($s$) and year ($y$) to catch weights sampled for lengths ($SC_{s,y}$) within the same state ($s$) and year ($y$). As the final step, the expanded length samples from the same size bin and sex were summed across all trips and states (combined into a single fleet) within a single year, to obtain the total number of lengths in each length bin by sex, year and fleet ($N_{b,j,y}$). The same calculations were repeated for each length bin (26 bins total), to develop sex specific length frequencies for each fishing fleet by year. Since coastwide catches in the assessment model were divided between South (California) and North (Oregon-Washington) fleets, the second stage expansion of length samples was relevant to only North fleet.
+
+Age frequencies were computed in the same manner, except that age observations for Washington and Oregon were not combined due to ageing error considerations. 
+
+The filtering and cleaning of the (pacfin) data and the length and age composition expansion was conducted using the (PacFIN.Utilities) package in R [@johnson_pacfin_2023]. The filtering steps included removing samples with missing vital information and removing ages for fish which fell more than 4 standard deviations from an estimated growth curve (fewer than 1 in 500 ages).
+
+All `r params$species` (pacfin) samples from Oregon prior to 1987, a total of 37,348 samples starting in 1966, have SAMPLE_METHOD = "S", indicating "special request" rather than random sampling. This categorization was apparently made due to lack of documentation on how these samples were taken and processed (pers. comm. A. Whitman, ODFW). Exploration of the impact of including or excluding these samples indicated that the combination of differences in lengths observed in Washington and Oregon, combined with gaps in the years when samples were available from Washington during the 1966--1986, resulted in discontinuities in the length comps which the model could not fit well. Including all the early (1966--1986) Oregon special project samples resulted in more plausible estimates of recruitment so that choice was made for the base model. Excluding these samples was the subject of a sensitivity analysis (Section \@ref(sensitivity-analyses)).
+ 
+As discussed under "Ageing Precision and Bias" (Section not available in this example), the age estimation comes from two labs, the Cooperative Aging Project (CAP) lab and (wdfw), using a combination of surface and break and burn ages. The analysis of ageing precision conducted in 2013 [@haltuch_status_2013] estimated 7 ageing error matrices of which the two groups with highest variability were "CAP Surface Pre-1990" and "WDFW Surface". Concerns over the reliability of those early surface age estimates (including consistent underestimation of ages using surface methods) and their potential impacts on estimated selectivity and growth, were raised in multiple previous `r params$species` assessments. The age compositions associated with these ageing errors were not fit well by any models explored during the assessment process so those two groups with the highest imprecision were excluded from the likelihood in the base model.
+
+The input sample sizes for length and age frequency distributions by year were calculated as a function of the number of trips and number of fish via the Stewart Method (pers.comm. I. Stewart, International Pacific Halibut Commission (IPHC)). The method is based on analysis of the input and model derived effective sample sizes from West Coast groundfish stock assessments. A piece-wise linear regression was used to estimate the increase in effective sample size per sample based on fish-per-sample and the maximum effective sample size for large numbers of individual fish. The resulting equations are:
+
+\begin{centering}
+
+Input N = $N_{\text{trips}} + 0.138 * N_{\text{fish}}$ if $N_{\text{fish}}/N_{\text{trips}}$ is $<$ 44,
+
+Input N = $7.06 * N_{\text{trips}}$ if $N_{\text{fish}}/N_{\text{trips}}$ is $\geq$ 44.
+
+\end{centering}
+
+
+Discard length composition data for both fleets were available from WCGOP, and for North fleet from Pikitch study as well. WCGOP length composition data were not sex-specific. WCGOP raw observations were expanded to the haul level, to account for differences in catch among hauls. Pikitch data (although available by sex) were very limited (32 fish sampled for length), and were included in the assessment as females and males combined. 
+
+No age data were available for discarded fish.

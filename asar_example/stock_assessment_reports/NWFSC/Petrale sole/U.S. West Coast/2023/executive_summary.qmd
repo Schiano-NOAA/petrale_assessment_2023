@@ -1,0 +1,30 @@
+## Executive Summary
+
+<!---
+Table of updates among the current stock assessment report
+--->
+
+### Assessment Methods
+
+<!---
+- Current Assessment
+- Additional data updates
+- Major changes
+--->
+
+This assessment reports the status of `r params$species` (Eopsetta jordani) off the U.S. West Coast using data through 2022. While `r params$species` are modeled as a single stock, the spatial aspects of the coastwide population are addressed through geographic separation of data sources/fleets where possible. There is currently no genetic evidence suggesting distinct biological stocks of `r params$species` off the U.S. West Coast. The limited tagging data available to describe adult movement suggests that `r params$species` may have some homing ability for deep water spawning sites but also have the ability to move long distances between spawning sites.
+
+In this assessment, fishery removals have been divided between two fleets: 1) `r params$nf` and 2) `r params$sf`. Landings for the `r params$nf` are defined as fish landed in Washington and Oregon ports. Landings for the `r params$sf` are defined as fish landed in California ports.
+
+### Stock Status
+
+<!---
+Short description followed by a tables with reference points, stock status, and projections
+
+If applicable, please add the stock TOR and responses here.
+--->
+
+Estimates of current (2023) fraction of unfished is 0.336, above the target reference point of 0.25 and an overfished threshold of 0.125. However, the biomass is estimated to be declining due to below-average recruitments in recent years.
+
+
+

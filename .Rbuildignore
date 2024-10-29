@@ -2,3 +2,5 @@
 ^\.devcontainer/Dockerfile$
 ^\.devcontainer/library-scripts/common-debian\.sh$
 ^R$
+^.*\.Rproj$
+^\.Rproj\.user$

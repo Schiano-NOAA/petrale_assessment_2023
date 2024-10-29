@@ -1,0 +1,9 @@
+## Tables 
+ 
+```{r} 
+#| label: 'indices'
+#| echo: false 
+#| warning: false 
+#| eval: false
+satf::table_indices(dat = output)
+``` 

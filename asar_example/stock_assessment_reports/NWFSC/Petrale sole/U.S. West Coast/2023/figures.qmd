@@ -1,0 +1,28 @@
+---
+format: pdf
+---
+
+## Figures 
+ 
+```{r} 
+#| label: 'recruitment'
+#| echo: false 
+#| warning: false 
+#| eval: false 
+#| fig-cap: 'This is a great caption explaining a trend of recruitment of `r params$species` in `r params$year`'
+#| fig-alt: ''
+satf::plot_recruitment(dat = output)
+``` 
+
+```{r} 
+#| label: 'spawn_bio'
+#| echo: false 
+#| warning: false 
+#| eval: true 
+#| fig-cap: 'This is a great caption explaining a trend of recruitment of Petrale sole in 2023.'
+#| fig-alt: 'this describes the trend.'
+output <- read.csv('petrale_convert_output.csv')
+satf::plot_spawning_biomass(dat = output, ref_line = 'target', end_year = 2023)
+``` 
+
+

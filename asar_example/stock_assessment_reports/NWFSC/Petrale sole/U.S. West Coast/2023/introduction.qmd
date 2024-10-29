@@ -1,0 +1,46 @@
+## Introduction
+
+Testing adding in an introduction for `r params$species`. There is currently no read of parameters for child documents.
+
+### Management and Assessment History
+
+<!---
+- Provide a brief description of management history of the stock and status (including change in fishery behavior).
+- History of assessment approaches.
+--->
+
+The earliest catches of `r params$species` are reported in 1876 in California and 1884 in Oregon. `r params$species` were lightly exploited during the early 1900s, but new gear technology in the 1930s allowed trawling on new grounds and the fishery expanded to greater depths and to Oregon and Washington waters, resulting in larger landings. The `r params$species` catches further increased during World War II in response to increased demands. Also, during the “vitamin A rush” in the late 1930s and 1940s it was found that `r params$species` has high levels, which contributed to increased catches of this species as well. By the 1950s, the fishery was well developed with the stock showing declines in biomass and catches (Figures i and ii). Also in the 1950s, winter spawning grounds at deeper depths with dense concentrations of `r params$species` were discovered, and catches increased accordingly. The rate of decline in spawning biomass accelerated through the 1970s reaching minimums estimated to be generally around or below 10% of the unexploited levels during the 1980s through the early 2000s (Figure iii). Recent annual catches between 1981–2022 range between 803 and 3060 mt per year and the most recent landings are shown in Table i. `r params$species` are a desirable market species and discarding has historically been low (less than 5%), with most of the discarding due to small sizes.
+
+### Stock Structure and ID
+
+<!---
+Provide a short description (a longer explanation will be included in the data section if applicable)
+--->
+
+There is little information regarding the stock structure of `r params$species` off the U.S. West Coast. No genetic research has been undertaken for `r params$species` and there is no other published research indicating separate stocks of `r params$species` within U.S. waters. Tagging studies show adult `r params$species` can move as much as 500 km, having the ability to be highly migratory with the possibility for homing ability [@alverson_results_1957]. Juveniles show little coastwide or bathymetric movement while studies suggest that adults generally move inshore and northward onto the continental shelf during the spring and summer to feeding grounds and offshore and southward during the fall and winter to deep water spawning grounds [@horton_species_1989; @love_milton_probably_1996]. Adult `r params$species` can tolerate a wide range of bottom temperatures [@perry_environmental_1994].
+
+Tagging studies indicate some mixing of adults between different spawning groups. DiDonato and Pasquale [-@didonato_migration_1970] reported that five fish tagged on the Willapa Deep grounds during the spawning season were recaptured during subsequent spawning seasons at other deepwater spawning grounds, as far south as Eureka (northern California) and the Umpqua River (southern Oregon). However, Pedersen [-@pedersen_movements_1975] reported that most of the fish (97%) recaptured from spawning grounds in winter were originally caught and tagged on those same grounds.
+
+Mixing of fish from multiple deep water spawning grounds likely occurs during the spring and summer when `r params$species` are feeding on the continental shelf. Fish that were captured, tagged, and released off the northwest Coast of Washington during May and September were subsequently recaptured during winter from spawning grounds off Vancouver Island (British Columbia, 1 fish), Heceta Bank (central Oregon, 2 fish), Eureka (northern California, 2 fish), and Halfmoon Bay (central California, 2 fish) (Pederson, 1975). Fish tagged south of Fort Bragg (central California) during July 1964 were later recaptured off Oregon (11 fish), Washington (6 fish), and Swiftsure Bank (southwestern tip of Vancouver Island, 1 fish) (D. Thomas, California Department of Fish and Game, Menlo Park, CA, cited by Sampson and Lee [@sampson_assessment_1999]).
+
+The highest densities of spawning adults off of British Columbia, as well as of eggs, larvae and juveniles, are found in the waters around Vancouver Island. Adults may utilize nearshore areas as summer feeding grounds and non-migrating adults may stay there during winter [@starr_petrale_2004].
+
+A recent analysis using an individual-based model coupled with a hydrodynamic model estimated variable but significant transboundary movement of early life stage `r params$species` between the U.S. and Canada [@santa_cruz_2023_petrale]. Tagging studies have also documented limited transboundary movement of adults [@pedersen_movements_1975].
+
+### Fishery Descriptions
+
+<!---
+Short summary of fleet composition (i.e. boat types), gear types, species targeted, and fishing grounds (one paragraph).
+--->
+
+Past assessments completed by Demory [-@demory_progress_1984], Turnock et al. [-@turnock_status_1993], and Sampson and Lee [-@sampson_assessment_1999] considered `r params$species` in the Columbia and U.S.-Vancouver (inpfc) areas a single stock. Sampson and Lee (1999) assumed that `r params$species` in the Eureka and Monterey (inpfc) areas represented two additional distinct socks. The 2005 `r params$species` assessment assumed two stocks, northern (U.S.-Vancouver and Columbia (inpfc) areas) and southern (Eureka, Monterey and Conception (inpfc) areas), to maintain continuity with previous assessments. Three stocks (West Coast Vancouver Island, Queen Charlotte Sound, and Heceta Strait) are considered for `r params$species` in the waters off British Columbia, Canada [@starr_petrale_2004]. The 2009, 2011, 2013, 2015 and 2019 assessments in the U.S. integrate the previously separate north-south assessments to provide a coastwide status evaluation. The decision to conduct a single-area assessment is based on strong evidence of a mixed stock from tagging studies, a lack of genetic studies on stock structure, a lack of evidence for differences in growth between the areas, and from examination of the fishery size-at-age data, as well as confounding differences in data collection between Washington, Oregon, and California.
+
+This assessment provides a coastwide status evaluation for `r params$species` using data through 2022. The U.S.-Canadian border is the northern boundary for the assessed stock, although the basis for this choice is due to political and current management needs rather than the population dynamics. Given the lack of clear information regarding the status of distinct biological populations, this assessment treats the U.S. `r params$species` resource from the Mexican border to the Canadian border as a single coastwide stock. Fishing fleets are separated geographically to account for spatial patterns in catch given the coastwide assessment area.  
+
+### Ecosystem Considerations or climate indicators
+
+<!---
+If this section is not relevant, please state "Ecosystem considerations and/or climate indicators were not included in this assessment."
+--->
+
+Ecosystem considerations and/or climate indicators were not included in this assessment.
