@@ -1,4 +1,3 @@
-\input{accessibility.tex}
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
@@ -11,6 +10,7 @@
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
+  \usepackage[scaled=0.9]{helvet}% needed later to replace Arial Narrow
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
@@ -19,7 +19,7 @@
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
 \usepackage{lmodern}
-\ifPDFTeX\else
+\ifPDFTeX\else  
     % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
@@ -114,13 +114,23 @@
 \usepackage{graphicx}
 % and their extensions so you won't have to specify these with
  % every instance of \includegraphics
-\usepackage{pdfcomment}
 \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
 \usepackage{wallpaper} % for the background image on title page
 \usepackage{geometry}
-% set font
+% set font - - depends upon the driver
+\ifPDFTeX
+ %% only want this in body section headings and ToC, using \sf
+ \def\sfdefault{phv}% Helvetica instead of its clone Arial
+ \renewcommand{\sectfont}{\normalcolor 
+  \def\bfdefault{bc}% bold condensed; i.e., narrow
+  \maybesffamily \bfseries }%% uses uhvb8ac  
+% \def\sfdefault{lmss}% Latin Modern replaces Arial
+% \renewcommand{\sectfont}{\normalcolor 
+ % \fontseries{sbc}\fontfamily{lmss}\selectfont }%% uses lmssdc10 
+\else
 \usepackage{fontspec}
 \setsansfont[Ligatures=TeX]{Arial Narrow}
+\fi
 \usepackage[headsepline=0.005pt:,footsepline=0.005pt:,plainfootsepline,automark]{scrlayer-scrpage}
 \clearpairofpagestyles
 \ohead[]{\headmark} \cofoot[\pagemark]{\pagemark}
@@ -200,16 +210,17 @@
 \title{Status of the Petrale sole stock in U.S. waters off the coast of
 U.S. West Coast in 2023}
 \author{Ian G. Taylor \and Vladlena Gertseva \and Nick Tolimieri}
-\date{2024-10-30}
+\date{2024-10-23}
 
 \begin{document}
-  \begin{titlepage}
+  \begin{titlepage}%
   % This is a combination of Pandoc templating and LaTeX
   % Pandoc templating https://pandoc.org/MANUAL.html#templates
   % See the README for help
-
-  \newgeometry{top=2in,bottom=1in,right=1in,left=1in}
-  \begin{minipage}[b][\textheight][s]{\textwidth}
+ %
+  \newgeometry{top=2in,bottom=1in,right=1in,left=1in}%
+  \noindent  %\tracingall
+  \begin{minipage}[b][\textheight][s]{.975\textwidth}%% RRM:  avoid Overfull box
   \raggedright
 
   % \includegraphics[width=2cm]{NOAA_Transparent_Logo.png}
@@ -217,20 +228,24 @@ U.S. West Coast in 2023}
   % background image
 
 
-  % Title and subtitle
+  % Title and subtitle   
   {\huge\bfseries\nohyphens{Status of the Petrale sole stock in U.S.
-  waters off the coast of U.S. West Coast in 2023}}\\[1\baselineskip]
+  waters off the coast of U.S. West Coast \\in 2023}\par}%\\[1\baselineskip]
+  %% RRM:  \par  must come before the group closes and line-depth reverts.
 
 
-  \vspace{1\baselineskip}
+  \vspace{2\baselineskip}
 
+{\centering. % RRM:  is this appropriate ?
   %%%%%% Cover image
-  \pdftooltip{\includegraphics{support\_files/Petrale\_sole.png}}{An illustration of petrale sole}
-  %\includegraphics[alt={An illustration of petrale sole},width=10cm]{support\_files/Petrale\_sole.png}
+  \includegraphics[width=10cm]{support\_files/Petrale\_sole.png}
 
   \vspace{1\baselineskip}
 
   % Authors
+  %% RRM: this block will need to be entirely recoded for Accessibility 
+  %% and use of \author  macros
+  %%
   % This hairy bit of code is just to get "and" between the last 2
   % authors. See below if you don't need that
    {\large{Ian G. Taylor}}{\textsuperscript{1}}%
@@ -243,23 +258,25 @@ U.S. West Coast in 2023}
   {\textsuperscript{1}}%
   %
 
+}
 
   % This is how to do it if you don't need the "and"
 
   %%%%%% Affiliations
   \vspace{2\baselineskip}
 
+{\footnotesize %% RRM to fit the full address with zip-code
   \hangindent=1em
-  \hangafter=1
+  \hangafter=1\relax
   %
   {1}.~{NOAA Fisheries Northwest Fisheries Science Center}%
   %
   %
-  , %
-  {2725 Montlake Boulevard East}%
+  , %{
+  2725 Montlake Boulevard East, Seattle WA 98112%
   %
 
-
+}
   %%%%%% Correspondence
   \vspace{1\baselineskip}
 
@@ -273,14 +290,14 @@ U.S. West Coast in 2023}
   % Whitespace between the title block and the tagline
   \vspace{1\baselineskip}
 
-  %%%%%% Tagline at bottom
+  %%%%%% Tagline at bottom  %% RRM:  this could be centered too 
   \includegraphics[width=2cm]{support_files/us_doc_logo.png}\newline
   U.S. Department of Commerce\newline
   National Oceanic and Atmospheric Administration\newline
   National Marine Fisheries Service\newline
-  Northwest Fisheries Science Center\newline
+  Northwest Fisheries Science Center %\newline
 
-  \end{minipage}
+  \end{minipage}%
   \restoregeometry
   \end{titlepage}
 
@@ -294,7 +311,7 @@ U.S. West Coast in 2023}
 \listoftables
 \newpage{}
 
-Please cite this publication as
+Please cite this publication as:
 
 Taylor, I.G., V. Gertseva, N. Tolimieri. 2023. Status of the Petrale
 sole stock in U.S. waters off the coast of U.S. West Coast in 2023. NOAA
@@ -306,7 +323,7 @@ Fisheries Science Center, Seattle, WA.
 
 \subsection{Assessment Methods}\label{assessment-methods}
 
-This assessment reports the status of Petrale sole (Eopsetta jordani)
+This assessment reports the status of Petrale sole (\textit{Eopsetta jordani})
 off the U.S. West Coast using data through 2022. While Petrale sole are
 modeled as a single stock, the spatial aspects of the coastwide
 population are addressed through geographic separation of data
@@ -325,7 +342,7 @@ the South fleet are defined as fish landed in California ports.
 \subsection{Stock Status}\label{stock-status}
 
 Estimates of current (2023) fraction of unfished is 0.336, above the
-target reference point of 0.25 and an overfished threshold of 0.125 0.3.
+target reference point of 0.25 and an overfished threshold of 0.125.
 However, the biomass is estimated to be declining due to below-average
 recruitments in recent years.
 
@@ -373,7 +390,7 @@ while studies suggest that adults generally move inshore and northward
 onto the continental shelf during the spring and summer to feeding
 grounds and offshore and southward during the fall and winter to deep
 water spawning grounds (Horton 1989; Love 1996). Adult Petrale sole can
-tolerate a wide range of bottom temperatures (Perry, Stocker, and Fargo
+tolerate a wide range of bottom temperatures (Perry, Stocker and Fargo
 1994).
 
 Tagging studies indicate some mixing of adults between different
@@ -392,7 +409,7 @@ northwest Coast of Washington during May and September were subsequently
 recaptured during winter from spawning grounds off Vancouver Island
 (British Columbia, 1 fish), Heceta Bank (central Oregon, 2 fish), Eureka
 (northern California, 2 fish), and Halfmoon Bay (central California, 2
-fish) (Pederson, 1975). Fish tagged south of Fort Bragg (central
+fish) (Pederson 1975). Fish tagged south of Fort Bragg (central
 California) during July 1964 were later recaptured off Oregon (11 fish),
 Washington (6 fish), and Swiftsure Bank (southwestern tip of Vancouver
 Island, 1 fish) (D. Thomas, California Department of Fish and Game,
@@ -414,11 +431,11 @@ transboundary movement of adults (Pedersen 1975).
 
 Past assessments completed by Demory (1984), Turnock et al. (1993), and
 Sampson and Lee (1999) considered Petrale sole in the Columbia and
-U.S.-Vancouver (inpfc) areas a single stock. Sampson and Lee (1999)
-assumed that Petrale sole in the Eureka and Monterey (inpfc) areas
+U.S.--Vancouver (INPFC) areas a single stock. Sampson and Lee (1999)
+assumed that Petrale sole in the Eureka and Monterey (INPFC) areas
 represented two additional distinct socks. The 2005 Petrale sole
-assessment assumed two stocks, northern (U.S.-Vancouver and Columbia
-(inpfc) areas) and southern (Eureka, Monterey and Conception (inpfc)
+assessment assumed two stocks, northern (U.S.--Vancouver and Columbia
+(\textsf{inpfc}) areas) and southern (Eureka, Monterey and Conception (INPFC)
 areas), to maintain continuity with previous assessments. Three stocks
 (West Coast Vancouver Island, Queen Charlotte Sound, and Heceta Strait)
 are considered for Petrale sole in the waters off British Columbia,
@@ -433,7 +450,7 @@ confounding differences in data collection between Washington, Oregon,
 and California.
 
 This assessment provides a coastwide status evaluation for Petrale sole
-using data through 2022. The U.S.-Canadian border is the northern
+using data through 2022. The U.S.--Canada border is the northern
 boundary for the assessed stock, although the basis for this choice is
 due to political and current management needs rather than the population
 dynamics. Given the lack of clear information regarding the status of
@@ -503,10 +520,10 @@ Landings}\label{commercial-fishery-landings}
 \subsubsection{Recent Landings}\label{recent-landings}
 
 Recent commercial landings of Petrale sole (1981--2022 for California
-and Washington; 1987--2022 for Oregon) were obtained from (pacfin), a
+and Washington; 1987--2022 for Oregon) were obtained from (\textsf{pacfin}), a
 regional fisheries database that manages fishery-dependent information
-in cooperation with West Coast state agencies and (nmfs). Catch data
-were extracted from (pacfin) on June 12, 2023, by state and then
+in cooperation with West Coast state agencies and (NMFS). Catch data
+were extracted from (\textsf{pacfin}) on June 12, 2023, by state and then
 combined into the fishing fleets used in the assessment.
 
 \subsubsection{Historical Landings}\label{historical-landings}
@@ -516,23 +533,23 @@ year.
 
 The Washington historical landings (1938--1980) were provided by
 Washington Department of Fish and Wildlife, who recently conducted
-historical catch reconstruction for Petrale sole (pers. comm. T. Tsou
-and G. Lippert, (wdfw). The new reconstruction of Washington historical
+historical catch reconstruction for Petrale sole (pers.\,comm. T.\ Tsou
+and G.\ Lippert, WDFW). The new reconstruction of Washington historical
 landings utilizes several historical sources, including Alverson and
 Chatwin (1957), who reported Petrale sole landings in Washington ports
-for the 1938-1947 period, and Ward et al.~(1969), who reported Petrale
-sole landings for the 1948-1969 period. Both sources reported Washington
+for the 1938--1947 period, and Ward et al.~(1969), who reported Petrale
+sole landings for the 1948--1969 period. Both sources reported Washington
 Petrale sole landings that were caught off the United States and Canada.
 Alverson and Chatwin (1957), however, also reported Washington landings
-by area of catch for a subset of years (1948-1955) that were informed by
+by area of catch for a subset of years (1948--1955) that were informed by
 historical tagging study. Washington Petrale sole landings caught off
 U.S. west coast from Alverson and Chatwin (1957) were used for the
 period between 1948 and 1955 by year, and an average proportion of
-landings caught off U.S. west coast across 1948-1955 period (11.6\%) was
+landings caught off U.S. west coast across 1948--1955 period (11.6\%) was
 used to apportion the Petrale sole Washington landings between U.S. and
-Canada for the rest of years within the 1938-1969 period. For 1970-1980,
-Washington landings are from area-specific fish receiving tickets (pers.
-comm. T. Tsou, WDFW). A linear interpolation was applied between
+Canada for the rest of years within the 1938--1969 period. For 1970--1980,
+Washington landings are from area-specific fish receiving tickets (pers.\,
+comm. T.\ Tsou, WDFW). A linear interpolation was applied between
 landings in 1938 and zero landings in 1930.
 
 The Oregon historical landings (1896--1986) were obtained from Oregon
@@ -542,13 +559,13 @@ Stephens 2014).
 
 The California historical landings were informed by several sources.
 Landings from the most recent ``historical'' period (between 1969 and
-1980) were available from the (calcom) database. Earlier landing records
+1980) were available from the (\textsf{calcom}) database. Earlier landing records
 (between 1931 and 1968) were reconstructed by the Southwest Fisheries
 Science Center (Ralston et al. 2010). Ralston et al.~(2010) included
 only catches made in waters off California and landed in California
 ports, therefore Ralston et al.~(2010) estimates were supplemented by
 catches landed in California, but made in waters off Oregon and
-Washington, provided by the SWFSC (pers. comm. E.J. Dick, SWFSC). The
+Washington, provided by the SWFSC (pers.\,comm. E.\,J.\ Dick, SWFSC). The
 earliest California landings were obtained from California Department of
 Fish and Game (CDFW) Fish Bulletins for 1916--1930 landings (Heimann and
 Carlisle 1970) as reconstructed by Lai et al. (2005) and used in
@@ -575,7 +592,7 @@ Wildlife completed historical catch reconstruction of Petrale sole, and
 newly estimated landings are lower than those used in previous
 assessment. Historical landings in 2013 assessment were based on
 preliminary estimates and might have included catches from Puget Sound
-and Canadian waters (pers. comm. T. Tsou, WDFW). New Washington
+and Canadian waters (pers.\,comm. T.\ Tsou, WDFW). New Washington
 historical landings are more consistent with history of commercial
 removals on the U.S. West Coast and represent improvement to the
 assessment.
@@ -626,7 +643,7 @@ normal fishing operations on commercial vessels collected the data,
 estimated the total weight of the catch by tow, and recorded the weight
 of species retained and discarded in the sample. The discard ratios
 (discarded/(discarded + retained)) from the Pikitch data were obtained
-from NWFSC (pers. comm. J. Wallace, NWFSC).
+from NWFSC (pers.\ comm. J.\ Wallace, NWFSC).
 
 WCGOP provided estimates of discard mean body weight, and these data
 were used in this assessment for each fishing fleet. .
@@ -635,12 +652,12 @@ were used in this assessment for each fishing fleet. .
 Data}\label{fishery-length-and-age-data}
 
 The fishery length and age data for North fleet were obtained from
-(pacfin) Biological Data System (BDS) database and contained data from
+(\textsf{pacfin}) Biological Data System (BDS) database and contained data from
 Oregon and Washington. For South fleet, length and age data were
-obtained from (pacfin) BDS database and also from the (calcom). The
-latter were provided by (cdfw) (pers.comm. B. Erwin, (psmfc) as the
-(calcom) samples for flatfish collected before 1990 are not included in
-(pacfin) at this time. The fishery length and age samples were collected
+obtained from (\textsf{pacfin}) BDS database and also from the (\textsf{calcom}). The
+latter were provided by (CDFW) (pers.\ comm. B.\ Erwin, PSMFC) as the
+(\textsf{calcom}) samples for flatfish collected before 1990 are not included in
+(\textsf{pacfin}) at this time. The fishery length and age samples were collected
 by port samplers.
 
 Length bins from 12 to 62 cm in 2 cm increments were used to summarize
@@ -654,20 +671,22 @@ Commercial length-frequency distributions were developed for each fleet
 and year, for which observations were available. Females and males
 distributions were treated separately, to track sex-specific
 differences. For each fleet, the raw observations (compiled from the
-(pacfin) and (calcom) databases) were expanded to the trip level, to
+(\textsf{pacfin}) and (\textsf{calcom}) databases) were expanded to the trip level, to
 account for differences in samples sizes relative catch weights among
 trips (first stage expansion). The expanded length observations were
 then further expanded to state level, to account for differences in
 sampling intensity of Petrale sole landings among states combined into a
 single fleet (second stage expansion). The expansion algorithm can be
 illustrated with the following equation:
+%
+%\begin{centering}
+%
+\[ 
+N_{b,j,y} = \sum_{s=1}^{s=k}\sum_{t=1}^{t=n}L_{b,j,t} \cdot
+\left(\frac{LC_t}{SC_t}\right) \cdot \left(\frac{LC_{s,y}}{SC_{s,y}}\right) 
+\]
 
-\begin{centering}
-
-$N_{b,j,y} = \displaystyle\sum_{s=1}^{s=k}\displaystyle\sum_{t=1}^{t=n}L_{b,j,t} \cdot
-\left(\frac{LC_t}{SC_t}\right) \cdot \left(\frac{LC_{s,y}}{SC_{s,y}}\right)$
-
-\end{centering}
+%\end{centering}
 
 Were \(N_{b,j,y}\) is the number of lengths in each length bin (\(b\))
 by sex (\(j\)) and year (\(y\)) within each fleet. \(L_{b,j,t}\)
@@ -687,25 +706,25 @@ fleet (\(N_{b,j,y}\)). The same calculations were repeated for each
 length bin (26 bins total), to develop sex specific length frequencies
 for each fishing fleet by year. Since coastwide catches in the
 assessment model were divided between South (California) and North
-(Oregon-Washington) fleets, the second stage expansion of length samples
+(Oregon--Washington) fleets, the second stage expansion of length samples
 was relevant to only North fleet.
 
 Age frequencies were computed in the same manner, except that age
 observations for Washington and Oregon were not combined due to ageing
 error considerations.
 
-The filtering and cleaning of the (pacfin) data and the length and age
-composition expansion was conducted using the (PacFIN.Utilities) package
-in R (Johnson and Wetzel 2023). The filtering steps included removing
+The filtering and cleaning of the (\textsf{pacfin}) data and the length and age
+composition expansion was conducted using the (\textsf{PacFIN.Utilities}) package
+in \textsf{R} (Johnson and Wetzel 2023). The filtering steps included removing
 samples with missing vital information and removing ages for fish which
 fell more than 4 standard deviations from an estimated growth curve
 (fewer than 1 in 500 ages).
 
 All Petrale sole (pacfin) samples from Oregon prior to 1987, a total of
-37,348 samples starting in 1966, have SAMPLE\_METHOD = ``S'', indicating
+37,348 samples starting in 1966, have \textsf{SAMPLE\_METHOD = ``S''}, indicating
 ``special request'' rather than random sampling. This categorization was
 apparently made due to lack of documentation on how these samples were
-taken and processed (pers. comm. A. Whitman, ODFW). Exploration of the
+taken and processed (pers.\,comm. A.\,Whitman, ODFW). Exploration of the
 impact of including or excluding these samples indicated that the
 combination of differences in lengths observed in Washington and Oregon,
 combined with gaps in the years when samples were available from
@@ -718,7 +737,7 @@ Excluding these samples was the subject of a sensitivity analysis
 
 As discussed under ``Ageing Precision and Bias'' (Section not available
 in this example), the age estimation comes from two labs, the
-Cooperative Aging Project (CAP) lab and (wdfw), using a combination of
+Cooperative Aging Project (CAP) lab and (WDFW), using a combination of
 surface and break and burn ages. The analysis of ageing precision
 conducted in 2013 (Haltuch, Ono, and Valero 2013) estimated 7 ageing
 error matrices of which the two groups with highest variability were
@@ -733,22 +752,32 @@ excluded from the likelihood in the base model.
 
 The input sample sizes for length and age frequency distributions by
 year were calculated as a function of the number of trips and number of
-fish via the Stewart Method (pers.comm. I. Stewart, International
+fish via the Stewart Method (pers.\,comm. I.\ Stewart, International
 Pacific Halibut Commission (IPHC)). The method is based on analysis of
 the input and model derived effective sample sizes from West Coast
 groundfish stock assessments. A piece-wise linear regression was used to
 estimate the increase in effective sample size per sample based on
 fish-per-sample and the maximum effective sample size for large numbers
 of individual fish. The resulting equations are:
-
-\begin{centering}
-
-Input N = $N_{\text{trips}} + 0.138 * N_{\text{fish}}$ if $N_{\text{fish}}/N_{\text{trips}}$ is $<$ 44,
-
-Input N = $7.06 * N_{\text{trips}}$ if $N_{\text{fish}}/N_{\text{trips}}$ is $\geq$ 44.
-
-\end{centering}
-
+%
+%\begin{centering}
+%% best to use a macro: 
+%% 1. it makes the math coding clearer
+%% 2. it can be extended into a Glossary entry, for more meaningful tagging
+\def\Nfish{\ensuremath{N_{\mathrm{fish}}}}
+\def\Ntrips{\ensuremath{N_{\mathrm{trips}}}}
+\[
+%Input N = $N_{\text{trips}} + 0.138 * N_{\text{fish}}$ if $N_{\text{fish}}/N_{\text{trips}}$ is $<$ 44,
+%
+%Input N = $7.06 * N_{\text{trips}}$ if $N_{\text{fish}}/N_{\text{trips}}$ is $\geq$ 44.
+%
+\mathrm{Input\ }N = \begin{cases}
+ \Ntrips + 0.138 \times \Nfish & \text{if  }\Nfish/\Ntrips < 44\\  
+ 7.06 \times \Ntrips & \text{if  } \Nfish/\Ntrips \geq 44\,.
+ \end{cases}
+\]
+%\end{centering}
+%
 Discard length composition data for both fleets were available from
 WCGOP, and for North fleet from Pikitch study as well. WCGOP length
 composition data were not sex-specific. WCGOP raw observations were
@@ -779,21 +808,21 @@ last assessment:
 
 \item Upgraded to Stock Synthesis version 3.30.21 (released in February 2023). This is standard practice to capitalize on newly developed features and corrections to older versions as well as improvements in computational efficiency.  No discernible differences were produce by this change.
 
-\item Updated historical and current fishery removals, to include most up to date information. This year WDFW completed historical catch reconstruction of Petrale sole and newly estimated landings are lower than those used in previous assessment. Historical landings in 2013 assessment were based on preliminary estimates and might have included catches from Puget Sound and Canadian waters (pers. comm. T. Tsou, WDFW). New Washington historical landings are more consistent with history of commercial removals on the U.S. West Coast and represent improvement to the assessment.
+\item Updated historical and current fishery removals, to include most up to date information. This year WDFW completed historical catch reconstruction of Petrale sole and newly estimated landings are lower than those used in previous assessment. Historical landings in 2013 assessment were based on preliminary estimates and might have included catches from Puget Sound and Canadian waters (pers.\,comm. T.\ Tsou, WDFW). New Washington historical landings are more consistent with history of commercial removals on the U.S. West Coast and represent improvement to the assessment. 
 
 \item Removed fishery CPUE time series. This change did not impact the assessment outputs or model fits.
 
-\item Combined Winter and Summer fleets into corresponding annual North and South fleets. The separation of North and South fisheries into the Winter and Summer fleets were primarily motivated by the using the fishery CPUE indices from Winter fisheries, targeting Petrale sole spawning aggregations. With removal of CPUE indices from the model, separation into Winter and Summer fleets was no longer needed. Also, Winter and Summer fleets selectivity curves were very similar within respective fisheries. Combining Winter and Summer fleets within North and South fisheries yielded very similar results. Combining seasonal fleets also removed uncertainty associated with separating historical annual catches by season (since fishing year for Winter fleet was defined from November of previous year through the February of the current year). Finally, using annual catches puts assessment in alignment with management system, which operates on a calendar year basis.
+\item Combined Winter and Summer fleets into corresponding annual North and South fleets. The separation of North and South fisheries into the Winter and Summer fleets were primarily motivated by the using the fishery CPUE indices from Winter fisheries, targeting Petrale sole spawning aggregations. With removal of CPUE indices from the model, separation into Winter and Summer fleets was no longer needed. Also, Winter and Summer fleets selectivity curves were very similar within respective fisheries. Combining Winter and Summer fleets within North and South fisheries yielded very similar results. Combining seasonal fleets also removed uncertainty associated with separating historical annual catches by season (since fishing year for Winter fleet was defined from November of previous year through the February of the current year). Finally, using annual catches puts assessment in alignment with management system, which operates on a calendar year basis.  
 
-\item Recalculated survey abundance indices using sdmTMB geostatistical model. Results did not impact the model output.
+\item Recalculated survey abundance indices using \textsf{sdmTMB} geostatistical model. Results did not impact the model output.
 
-\item Switched to a single  (s-tri) index (instead of separating it into two indices for early and late survey periods). The  (s-tri) was separated in past assessments due to change in depth and latitudinal coverage of the  (s-tri). Using a single index did not impact model results, but provided a longer historical survey trend and simplified the structure of the assessment model.
+\item Switched to a single  (\textsf{s-tri}) index (instead of separating it into two indices for early and late survey periods). The  (\textsf{s-tri}) was separated in past assessments due to change in depth and latitudinal coverage of the  (\textsf{s-tri}). Using a single index did not impact model results, but provided a longer historical survey trend and simplified the structure of the assessment model.
 
 \item Updated input sample sizes associated with fisheries composition data to using a function of number of trips and number and fish (rather than number of trips, as in previous assessment), to follow current best practices and ensure a consistent treatment of fishery and survey input data.
 
-\item Updated weight-length, maturity and fecundity parameters, to include most up to date and improved information. Updating weight-length parameters did not produce a noticeable change. Model with new maturity parameters had slightly lower scale as length at 50\% maturity now is slightly higher. With new fecundity parameters, the model produces spawning output rather that spawning biomass, and 2019 model 2023 spawning outputs are no longer comparable. However, relative depletion show similar results.
+\item Updated weight-length, maturity and fecundity parameters, to include most up to date and improved information. Updating weight--length parameters did not produce a noticeable change. Model with new maturity parameters had slightly lower scale as length at 50\% maturity now is slightly higher. With new fecundity parameters, the model produces spawning output rather that spawning biomass, and 2019 model 2023 spawning outputs are no longer comparable. However, relative depletion show similar results.
 
-\item Updated spawn-recruit parameters and fixed Beverton-Holt steepness at 0.8, mean of the Myers prior developed based on meta-analysis of flatfish steepness (Myers et al. 1999). When estimated, steepness was approaching the upper parameter bound of 1 (steepness likelihood profile is included in this report). Limiting steepness to 0.8 did not cause a change in model results, but yielded more reasonable estimates of other life history parameters, including natural mortality.
+\item Updated spawn-recruit parameters and fixed Beverton--Holt steepness at 0.8, mean of the Myers prior developed based on meta-analysis of flatfish steepness (Myers et al. 1999). When estimated, steepness was approaching the upper parameter bound of 1 (steepness likelihood profile is included in this report). Limiting steepness to 0.8 did not cause a change in model results, but yielded more reasonable estimates of other life history parameters, including natural mortality.
 
 \end{enumerate}
 
@@ -809,18 +838,18 @@ done previously.
 The estimated parameters are summarized in a table (not yet in this
 example) and all estimated and fixed parameters are shown in Tables (not
 yet in this example). The total number of parameters is reduced from 304
-in 2019 to 267 dur to the simplification of the fleet structure into an
+in 2019 to 267 due to the simplification of the fleet structure into an
 annual model without separate selectivity for winter and summer. There
 are 190 estimated recruitment deviations parameters which are divided as
 follows: 31 parameters set up the initial age structure in 1876, 147
-parameters for the recdevs in 1876 to 2022, and 12 forecast recruitment
-parameters for the years 2023 to 2035. The recevs in the time series are
+parameters for the \textsf{recdevs} in 1876 to 2022, and 12 forecast recruitment
+parameters for the years 2023 to 2035. The \textsf{recdevs} in the time series are
 divided into early, main, and late deviations with the main period
 covering the years 1959 to 2020. However, the distinction between these
 periods in Stock Synthesis is only relevant if the main period is a
 zero-centered vector, which it is not in the base model. Sensitivity
 analyses are used to explore the impact of relaxing the zero-centering
-and including all recruitment deviations in the main period.-13
+and including all recruitment deviations in the main period.-13 %% what is this -13 about ???
 
 The structure of the base model was selected to balance model realism
 and parsimony. A large number of alternate model formulations were
@@ -903,7 +932,8 @@ sufficient amount of data.
 
 Estimated and fixed parameter values are shown in Tables X.
 
-Estimates of key parameters include female \(M\) = XX, male \(M\) = XX.
+%% presumably the XXs indicate missing data - - to be inserted here later ??
+Estimates of key parameters include female \(M = \mathrm{XX}\), male \(M = \mathrm{XX}\).
 Females were estimated as growing larger than males with female length
 at age 17 (the second reference age) equal to XX cm compared to XX cm
 for males. The \(L_\infty\) associated with the estimated growth
@@ -914,7 +944,7 @@ Deviations}\label{recruitment-estimates-and-deviations}
 
 \subsection{Model Fits}\label{model-fits}
 
-The model fits the (s-wcgbt) index very well, including a decline from
+The model fits the (\textsf{s-wcgbt}) index very well, including a decline from
 2005 to 2009 followed by a rapid increase to a plateau in 2013--2017 and
 a gradual decline to the most recent observations. The observations that
 fit the least well are 2018 and 2019, which were lower than the years
@@ -924,7 +954,7 @@ outliers or if there was some unexplained population dynamics leading to
 a reduction in available biomass for those years.
 
 When an extra standard deviation parameter was estimated for the
-(s-wcgbt), the value was minimal, indicating that the index fits well
+(\textsf{s-wcgbt}), the value was minimal, indicating that the index fits well
 enough to not require additional tuning.
 
 The fit to length composition data was very good for all fleets when
@@ -940,7 +970,7 @@ stripes within the Pearson plots) indicating a systematic lack of fit.
 
 Expected mean length in each year matches both long-term and short-term
 trends. However, a notable lack of fit in this diagnostic is for the
-2021 (s-wcgbt) where the largest haul in the history of the survey took
+2021 (\textsf{s-wcgbt}) where the largest haul in the history of the survey took
 place which was dominated by large females, resulting in an outlier in
 the observed mean lengths.
 
@@ -974,7 +1004,7 @@ Fit to the discard rates and and mean body weight of the discards was
 good thanks to consistently low and stable rates and the use of time
 blocks on the retention parameters to fit the years with significant
 change. A change in blocking for retention in the South fleet relative
-to the 2019 assessment (baseing historical period on retention up
+to the 2019 assessment (baseing historical period on retention up %% baseing ? is this a typo ?
 through 2010 rather than just 2002) resulted in lower and more plausible
 estimates of discard rates and total discards for the period prior to
 the availability of observer data for the South fleet.
@@ -990,7 +1020,7 @@ we checked that the Hessian matrix for the base model was
 positive-definite. There were no difficulties in inverting the Hessian
 to obtain estimates of variability. We also confirmed that the final
 gradient is below 0.001. The gradient was even further reduced using
-hess\_step, a recent option in ADMB and SS3, allowing to use the Hessian
+\textsf{hess\_step}, a recent option in ADMB and SS3, allowing to use the Hessian
 information to fit the true best fit to the data.
 
 To confirm that the reported estimates were from the global best fit, we
@@ -1024,13 +1054,13 @@ These groups included the following runs:
   \tightlist
   \item
     Estimating separate catchability parameter and separate selectivity
-    parameters for the late (s-tri) period.
+    parameters for the late (\textsf{s-tri}) period.
   \item
-    Excluding (s-tri) 2004 observation.
+    Excluding (\textsf{s-tri}) 2004 observation.
   \item
-    Allowing (s-tri) selectivity to be dome-shaped.
+    Allowing (\textsf{s-tri}) selectivity to be dome-shaped.
   \item
-    Estimating extra standard deviation for the (s-wcgbt)
+    Estimating extra standard deviation for the (\textsf{s-wcgbt})
   \item
     Including fisheries CPUEs in the model.
   \end{itemize}
@@ -1058,7 +1088,7 @@ These groups included the following runs:
   \item
     Estimating age-0 fraction female within the model.
   \item
-    Estimating age-0 fraction female with no sex offset on the (s-wcgbt)
+    Estimating age-0 fraction female with no sex offset on the (\textsf{s-wcgbt})
     selectivity parameters.
   \end{itemize}
 \item
@@ -1095,7 +1125,7 @@ data had little discernible difference on the population trajectory.
 
 The Dirichlet-Multinomial data weighting method led to weights of
 97--99\% of the input sample sizes for all composition data other than
-the (s-wcgbt) which had an applied weight of 74\% of the input sample
+the (\textsf{s-wcgbt}) which had an applied weight of 74\% of the input sample
 sizes. These weights are far higher than the weights used in the base
 model calculated using the Francis method and resulted in much more
 variability in the recruitment time series and relatively less weight
@@ -1111,7 +1141,7 @@ female estimated and sex-specific selectivity results in an estimate of
 62\% female at birth, contrary to the patterns in the data and the
 patterns in other flatfish indicating confounding with the selectivity
 parameters. When the sex offset in selectivity was removed for the
-(s-wcgbt), the estimate was 47\% and the total likelihood was worse by
+(\textsf{s-wcgbt}), the estimate was 47\% and the total likelihood was worse by
 about 30 units of log-likelihood due to degraded fits to the length
 composition data.
 
@@ -1138,18 +1168,18 @@ Addition survey and catches from British Columbia waters to the base
 model did not cause a conflict among data sources from United States and
 Canada. The index from the synoptic bottom trawl survey conducted on the
 West Coast Vancouver Island (WCVI) since 2004 is consistent with the
-(s-wcgbt) index conducted on the U.S. West Coast. Estimated stock
+(\textsf{s-wcgbt}) index conducted on the U.S. West Coast. Estimated stock
 trajectories did not change in any of the alternative runs. As expected,
 with Canadian catches added, initial spawning output increased.
 
 \subsection{Retrospective Analysis}\label{retrospective-analysis}
 
 A five-year retrospective analysis was conducted by successively
-removing years of data starting from 2022 (i.e., ``Data -1 Years''
+removing years of data starting from 2022 (i.e., ``Data-1 Years''
 corresponds to data through 2021 instead of 2022). The estimated
 spawning output exhibited small changes in the initial equilibrium and
 the final few years of the model. These changes are driven primarily by
-the fit to the (s-wcgbt), where the combination of the lower observed
+the fit to the (\textsf{s-wcgbt}), where the combination of the lower observed
 index in 2018 and 2019 and the absence of a survey in 2020 resulted in
 the Data-2 through Data-4 retrospectives to a more steeply declining
 trend at the end of the time series.
@@ -1176,7 +1206,7 @@ information on the likelihood contribution of that prior as if it were
 estimated in the model.
 
 The results of the likelihood profile analysis on \(R_0\) are shown in
-Figure X. The negative log-likelihood is optimized at a value of XX for
+Figure X. The negative $\log$-likelihood is optimized at a value of XX for
 the base model, with the age data best fit at a slightly lower value and
 hte length comps fit slightly higher. The starting and ending biomass
 and associated fraction unfished are relatively insensitive to changes
@@ -1184,20 +1214,20 @@ in \(R_0\) indicating that other parameters, like natural mortality, are
 compensating for changes along the profile.
 
 The likelihood profile for steepness shows that the negative
-log-likelihood for the base model declines with increasing steepness up
+$\log$-likelihood for the base model declines with increasing steepness up
 to an MLE estimate around 0.96 with a flat profile from there up to 1.0.
 The model with this steepness value was considered unrealistic as it was
 associated with less plausible estimates natural mortality around 0.10
 (compared to base model estimates of XX for females). Spawner-recruit
 steepness in the model was fixed at 0.8, which is the Myers prior for
-Pleuronectidae based on meta-analysis of flatfish steepness (Myers,
+\textit{Pleuronectidae} based on meta-analysis of flatfish steepness (Myers,
 Bowen, and Barrowman 1999). The starting and ending biomass and
 associated fraction unfished show almost no change across a wide range
 of steepness values.
 
 Natural mortality is estimated in this assessment using meta-analytical
 prior (Hamel 2015; Hamel and Cope 2022). Change in the negative
-log-likelihood across a range of female natural mortality values is
+$\log$-likelihood across a range of female natural mortality values is
 shown in Figure X. The starting and ending biomass and associated
 fraction unfished were more sensitive to the changes in female \(M\)
 than the other profile parameters. The dashed line Figure X shows the
@@ -1263,7 +1293,8 @@ Correlates.''} \emph{ICES Journal of Marine Science: Journal Du Conseil}
 Hamel, Owen S., and Jason M. Cope. 2022. {``Development and
 Considerations for Application of a Longevity-Based Prior for the
 Natural Mortality Rate.''} \emph{Fisheries Research} 256: 106477.
-https://doi.org/\url{https://doi.org/10.1016/j.fishres.2022.106477}.
+%https://doi.org/
+\url{https://doi.org/10.1016/j.fishres.2022.106477}.
 
 \bibitem[\citeproctext]{ref-heimann_pacific_1970}
 Heimann, R. F. G., and J. G. Carlisle. 1970. {``Pacific {Fishes} of
@@ -1370,17 +1401,6 @@ Assessment Diagnostics}.
 \newpage{}
 
 \section{Figures}\label{figures}
-
-\begin{figure}[H]
-
-{\centering \includegraphics{SAR_USWC_Petrale_sole_skeleton_files/figure-pdf/spawn_bio-1.pdf}
-
-}
-
-\caption{This is a great caption explaining a trend of spawning biomass
-of Petrale sole in test in-line code 0.3 .}
-
-\end{figure}%
 
 \newpage{}
 

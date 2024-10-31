@@ -1,5 +1,6 @@
 ---
 title: 'Status of the Petrale sole stock in U.S. waters off the coast of U.S. West Coast in 2023'
+engine: lualatex
 author:
   - name: 'Ian G. Taylor'
     affiliations:
@@ -59,8 +60,13 @@ bibliography:
 #| label: 'model_output'
 #| echo: false 
 #| warning: false 
-#| eval: true 
+#| eval: false 
 output <- read.csv('petrale_convert_output.csv')
+# quantities
+sb <- 1000
+fm <- 0.3
+# alt-text quan
+
 ``` 
 
 {{< pagebreak >}} 

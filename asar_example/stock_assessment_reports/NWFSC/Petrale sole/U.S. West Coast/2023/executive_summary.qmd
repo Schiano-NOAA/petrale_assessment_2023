@@ -24,7 +24,7 @@ Short description followed by a tables with reference points, stock status, and 
 If applicable, please add the stock TOR and responses here.
 --->
 
-Estimates of current (2023) fraction of unfished is 0.336, above the target reference point of 0.25 and an overfished threshold of 0.125. However, the biomass is estimated to be declining due to below-average recruitments in recent years.
+Estimates of current (2023) fraction of unfished is 0.336, above the target reference point of 0.25 and an overfished threshold of 0.125 `r fm`. However, the biomass is estimated to be declining due to below-average recruitments in recent years.
 
 
 

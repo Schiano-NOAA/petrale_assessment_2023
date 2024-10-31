@@ -1,0 +1,380 @@
+12a13
+>   \usepackage[scaled=0.9]{helvet}% needed later to replace Arial Narrow
+119c120,130
+< % set font
+---
+> % set font - - depends upon the driver
+> \ifPDFTeX
+>  %% only want this in body section headings and ToC, using \sf
+>  \def\sfdefault{phv}% Helvetica instead of its clone Arial
+>  \renewcommand{\sectfont}{\normalcolor 
+>   \def\bfdefault{bc}% bold condensed; i.e., narrow
+>   \maybesffamily \bfseries }%% uses uhvb8ac  
+> % \def\sfdefault{lmss}% Latin Modern replaces Arial
+> % \renewcommand{\sectfont}{\normalcolor 
+>  % \fontseries{sbc}\fontfamily{lmss}\selectfont }%% uses lmssdc10 
+> \else
+121a133
+> \fi
+204c216
+<   \begin{titlepage}
+---
+>   \begin{titlepage}%
+208,210c220,223
+< 
+<   \newgeometry{top=2in,bottom=1in,right=1in,left=1in}
+<   \begin{minipage}[b][\textheight][s]{\textwidth}
+---
+>  %
+>   \newgeometry{top=2in,bottom=1in,right=1in,left=1in}%
+>   \noindent  %\tracingall
+>   \begin{minipage}[b][\textheight][s]{.975\textwidth}%% RRM:  avoid Overfull box
+218c231
+<   % Title and subtitle
+---
+>   % Title and subtitle   
+220c233,234
+<   waters off the coast of U.S. West Coast in 2023}}\\[1\baselineskip]
+---
+>   waters off the coast of U.S. West Coast \\in 2023}\par}%\\[1\baselineskip]
+>   %% RRM:  \par  must come before the group closes and line-depth reverts.
+223c237
+<   \vspace{1\baselineskip}
+---
+>   \vspace{2\baselineskip}
+224a239
+> {\centering. % RRM:  is this appropriate ?
+230a246,248
+>   %% RRM: this block will need to be entirely recoded for Accessibility 
+>   %% and use of \author  macros
+>   %%
+242a261
+> }
+248a268
+> {\footnotesize %% RRM to fit the full address with zip-code
+250c270
+<   \hangafter=1
+---
+>   \hangafter=1\relax
+255,256c275,276
+<   , %
+<   {2725 Montlake Boulevard East}%
+---
+>   , %{
+>   2725 Montlake Boulevard East, Seattle WA 98112%
+259c279
+< 
+---
+> }
+273c293
+<   %%%%%% Tagline at bottom
+---
+>   %%%%%% Tagline at bottom  %% RRM:  this could be centered too 
+278c298
+<   Northwest Fisheries Science Center\newline
+---
+>   Northwest Fisheries Science Center %\newline
+280c300
+<   \end{minipage}
+---
+>   \end{minipage}%
+294c314
+< Please cite this publication as
+---
+> Please cite this publication as:
+306c326
+< This assessment reports the status of Petrale sole (Eopsetta jordani)
+---
+> This assessment reports the status of Petrale sole (\textit{Eopsetta jordani})
+373c393
+< tolerate a wide range of bottom temperatures (Perry, Stocker, and Fargo
+---
+> tolerate a wide range of bottom temperatures (Perry, Stocker and Fargo
+392c412
+< fish) (Pederson, 1975). Fish tagged south of Fort Bragg (central
+---
+> fish) (Pederson 1975). Fish tagged south of Fort Bragg (central
+414,415c434,435
+< U.S.-Vancouver (inpfc) areas a single stock. Sampson and Lee (1999)
+< assumed that Petrale sole in the Eureka and Monterey (inpfc) areas
+---
+> U.S.--Vancouver (INPFC) areas a single stock. Sampson and Lee (1999)
+> assumed that Petrale sole in the Eureka and Monterey (INPFC) areas
+417,418c437,438
+< assessment assumed two stocks, northern (U.S.-Vancouver and Columbia
+< (inpfc) areas) and southern (Eureka, Monterey and Conception (inpfc)
+---
+> assessment assumed two stocks, northern (U.S.--Vancouver and Columbia
+> (\textsf{inpfc}) areas) and southern (Eureka, Monterey and Conception (INPFC)
+433c453
+< using data through 2022. The U.S.-Canadian border is the northern
+---
+> using data through 2022. The U.S.--Canada border is the northern
+503c523
+< and Washington; 1987--2022 for Oregon) were obtained from (pacfin), a
+---
+> and Washington; 1987--2022 for Oregon) were obtained from (\textsf{pacfin}), a
+505,506c525,526
+< in cooperation with West Coast state agencies and (nmfs). Catch data
+< were extracted from (pacfin) on June 12, 2023, by state and then
+---
+> in cooperation with West Coast state agencies and (NMFS). Catch data
+> were extracted from (\textsf{pacfin}) on June 12, 2023, by state and then
+516,517c536,537
+< historical catch reconstruction for Petrale sole (pers. comm. T. Tsou
+< and G. Lippert, (wdfw). The new reconstruction of Washington historical
+---
+> historical catch reconstruction for Petrale sole (pers.\,comm. T.\ Tsou
+> and G.\ Lippert, WDFW). The new reconstruction of Washington historical
+520,521c540,541
+< for the 1938-1947 period, and Ward et al.~(1969), who reported Petrale
+< sole landings for the 1948-1969 period. Both sources reported Washington
+---
+> for the 1938--1947 period, and Ward et al.~(1969), who reported Petrale
+> sole landings for the 1948--1969 period. Both sources reported Washington
+524c544
+< by area of catch for a subset of years (1948-1955) that were informed by
+---
+> by area of catch for a subset of years (1948--1955) that were informed by
+528c548
+< landings caught off U.S. west coast across 1948-1955 period (11.6\%) was
+---
+> landings caught off U.S. west coast across 1948--1955 period (11.6\%) was
+530,532c550,552
+< Canada for the rest of years within the 1938-1969 period. For 1970-1980,
+< Washington landings are from area-specific fish receiving tickets (pers.
+< comm. T. Tsou, WDFW). A linear interpolation was applied between
+---
+> Canada for the rest of years within the 1938--1969 period. For 1970--1980,
+> Washington landings are from area-specific fish receiving tickets (pers.\,
+> comm. T.\ Tsou, WDFW). A linear interpolation was applied between
+542c562
+< 1980) were available from the (calcom) database. Earlier landing records
+---
+> 1980) were available from the (\textsf{calcom}) database. Earlier landing records
+548c568
+< Washington, provided by the SWFSC (pers. comm. E.J. Dick, SWFSC). The
+---
+> Washington, provided by the SWFSC (pers.\,comm. E.\,J.\ Dick, SWFSC). The
+575c595
+< and Canadian waters (pers. comm. T. Tsou, WDFW). New Washington
+---
+> and Canadian waters (pers.\,comm. T.\ Tsou, WDFW). New Washington
+626c646
+< from NWFSC (pers. comm. J. Wallace, NWFSC).
+---
+> from NWFSC (pers.\ comm. J.\ Wallace, NWFSC).
+635c655
+< (pacfin) Biological Data System (BDS) database and contained data from
+---
+> (\textsf{pacfin}) Biological Data System (BDS) database and contained data from
+637,640c657,660
+< obtained from (pacfin) BDS database and also from the (calcom). The
+< latter were provided by (cdfw) (pers.comm. B. Erwin, (psmfc) as the
+< (calcom) samples for flatfish collected before 1990 are not included in
+< (pacfin) at this time. The fishery length and age samples were collected
+---
+> obtained from (\textsf{pacfin}) BDS database and also from the (\textsf{calcom}). The
+> latter were provided by (CDFW) (pers.\ comm. B.\ Erwin, PSMFC) as the
+> (\textsf{calcom}) samples for flatfish collected before 1990 are not included in
+> (\textsf{pacfin}) at this time. The fishery length and age samples were collected
+654c674
+< (pacfin) and (calcom) databases) were expanded to the trip level, to
+---
+> (\textsf{pacfin}) and (\textsf{calcom}) databases) were expanded to the trip level, to
+661,665c681,687
+< 
+< \begin{centering}
+< 
+< $N_{b,j,y} = \displaystyle\sum_{s=1}^{s=k}\displaystyle\sum_{t=1}^{t=n}L_{b,j,t} \cdot
+< \left(\frac{LC_t}{SC_t}\right) \cdot \left(\frac{LC_{s,y}}{SC_{s,y}}\right)$
+---
+> %
+> %\begin{centering}
+> %
+> \[ 
+> N_{b,j,y} = \sum_{s=1}^{s=k}\sum_{t=1}^{t=n}L_{b,j,t} \cdot
+> \left(\frac{LC_t}{SC_t}\right) \cdot \left(\frac{LC_{s,y}}{SC_{s,y}}\right) 
+> \]
+667c689
+< \end{centering}
+---
+> %\end{centering}
+687c709
+< (Oregon-Washington) fleets, the second stage expansion of length samples
+---
+> (Oregon--Washington) fleets, the second stage expansion of length samples
+694,696c716,718
+< The filtering and cleaning of the (pacfin) data and the length and age
+< composition expansion was conducted using the (PacFIN.Utilities) package
+< in R (Johnson and Wetzel 2023). The filtering steps included removing
+---
+> The filtering and cleaning of the (\textsf{pacfin}) data and the length and age
+> composition expansion was conducted using the (\textsf{PacFIN.Utilities}) package
+> in \textsf{R} (Johnson and Wetzel 2023). The filtering steps included removing
+702c724
+< 37,348 samples starting in 1966, have SAMPLE\_METHOD = ``S'', indicating
+---
+> 37,348 samples starting in 1966, have \textsf{SAMPLE\_METHOD = ``S''}, indicating
+705c727
+< taken and processed (pers. comm. A. Whitman, ODFW). Exploration of the
+---
+> taken and processed (pers.\,comm. A.\,Whitman, ODFW). Exploration of the
+718c740
+< Cooperative Aging Project (CAP) lab and (wdfw), using a combination of
+---
+> Cooperative Aging Project (CAP) lab and (WDFW), using a combination of
+733c755
+< fish via the Stewart Method (pers.comm. I. Stewart, International
+---
+> fish via the Stewart Method (pers.\,comm. I.\ Stewart, International
+740,748c762,780
+< 
+< \begin{centering}
+< 
+< Input N = $N_{\text{trips}} + 0.138 * N_{\text{fish}}$ if $N_{\text{fish}}/N_{\text{trips}}$ is $<$ 44,
+< 
+< Input N = $7.06 * N_{\text{trips}}$ if $N_{\text{fish}}/N_{\text{trips}}$ is $\geq$ 44.
+< 
+< \end{centering}
+< 
+---
+> %
+> %\begin{centering}
+> %% best to use a macro: 
+> %% 1. it makes the math coding clearer
+> %% 2. it can be extended into a Glossary entry, for more meaningful tagging
+> \def\Nfish{\ensuremath{N_{\mathrm{fish}}}}
+> \def\Ntrips{\ensuremath{N_{\mathrm{trips}}}}
+> \[
+> %Input N = $N_{\text{trips}} + 0.138 * N_{\text{fish}}$ if $N_{\text{fish}}/N_{\text{trips}}$ is $<$ 44,
+> %
+> %Input N = $7.06 * N_{\text{trips}}$ if $N_{\text{fish}}/N_{\text{trips}}$ is $\geq$ 44.
+> %
+> \mathrm{Input\ }N = \begin{cases}
+>  \Ntrips + 0.138 \times \Nfish & \text{if  }\Nfish/\Ntrips < 44\\  
+>  7.06 \times \Ntrips & \text{if  } \Nfish/\Ntrips \geq 44\,.
+>  \end{cases}
+> \]
+> %\end{centering}
+> %
+779c811
+< \item Updated historical and current fishery removals, to include most up to date information. This year WDFW completed historical catch reconstruction of Petrale sole and newly estimated landings are lower than those used in previous assessment. Historical landings in 2013 assessment were based on preliminary estimates and might have included catches from Puget Sound and Canadian waters (pers. comm. T. Tsou, WDFW). New Washington historical landings are more consistent with history of commercial removals on the U.S. West Coast and represent improvement to the assessment. 
+---
+> \item Updated historical and current fishery removals, to include most up to date information. This year WDFW completed historical catch reconstruction of Petrale sole and newly estimated landings are lower than those used in previous assessment. Historical landings in 2013 assessment were based on preliminary estimates and might have included catches from Puget Sound and Canadian waters (pers.\,comm. T.\ Tsou, WDFW). New Washington historical landings are more consistent with history of commercial removals on the U.S. West Coast and represent improvement to the assessment. 
+785c817
+< \item Recalculated survey abundance indices using sdmTMB geostatistical model. Results did not impact the model output.
+---
+> \item Recalculated survey abundance indices using \textsf{sdmTMB} geostatistical model. Results did not impact the model output.
+787c819
+< \item Switched to a single  (s-tri) index (instead of separating it into two indices for early and late survey periods). The  (s-tri) was separated in past assessments due to change in depth and latitudinal coverage of the  (s-tri). Using a single index did not impact model results, but provided a longer historical survey trend and simplified the structure of the assessment model.
+---
+> \item Switched to a single  (\textsf{s-tri}) index (instead of separating it into two indices for early and late survey periods). The  (\textsf{s-tri}) was separated in past assessments due to change in depth and latitudinal coverage of the  (\textsf{s-tri}). Using a single index did not impact model results, but provided a longer historical survey trend and simplified the structure of the assessment model.
+791c823
+< \item Updated weight-length, maturity and fecundity parameters, to include most up to date and improved information. Updating weight-length parameters did not produce a noticeable change. Model with new maturity parameters had slightly lower scale as length at 50\% maturity now is slightly higher. With new fecundity parameters, the model produces spawning output rather that spawning biomass, and 2019 model 2023 spawning outputs are no longer comparable. However, relative depletion show similar results.
+---
+> \item Updated weight-length, maturity and fecundity parameters, to include most up to date and improved information. Updating weight--length parameters did not produce a noticeable change. Model with new maturity parameters had slightly lower scale as length at 50\% maturity now is slightly higher. With new fecundity parameters, the model produces spawning output rather that spawning biomass, and 2019 model 2023 spawning outputs are no longer comparable. However, relative depletion show similar results.
+793c825
+< \item Updated spawn-recruit parameters and fixed Beverton-Holt steepness at 0.8, mean of the Myers prior developed based on meta-analysis of flatfish steepness (Myers et al. 1999). When estimated, steepness was approaching the upper parameter bound of 1 (steepness likelihood profile is included in this report). Limiting steepness to 0.8 did not cause a change in model results, but yielded more reasonable estimates of other life history parameters, including natural mortality.
+---
+> \item Updated spawn-recruit parameters and fixed Beverton--Holt steepness at 0.8, mean of the Myers prior developed based on meta-analysis of flatfish steepness (Myers et al. 1999). When estimated, steepness was approaching the upper parameter bound of 1 (steepness likelihood profile is included in this report). Limiting steepness to 0.8 did not cause a change in model results, but yielded more reasonable estimates of other life history parameters, including natural mortality.
+809c841
+< in 2019 to 267 dur to the simplification of the fleet structure into an
+---
+> in 2019 to 267 due to the simplification of the fleet structure into an
+813,814c845,846
+< parameters for the recdevs in 1876 to 2022, and 12 forecast recruitment
+< parameters for the years 2023 to 2035. The recevs in the time series are
+---
+> parameters for the \textsf{recdevs} in 1876 to 2022, and 12 forecast recruitment
+> parameters for the years 2023 to 2035. The \textsf{recdevs} in the time series are
+820c852
+< and including all recruitment deviations in the main period.-13
+---
+> and including all recruitment deviations in the main period.-13 %% what is this -13 about ???
+903c935,936
+< Estimates of key parameters include female \(M\) = XX, male \(M\) = XX.
+---
+> %% presumably the XXs indicate missing data - - to be inserted here later ??
+> Estimates of key parameters include female \(M = \mathrm{XX}\), male \(M = \mathrm{XX}\).
+914c947
+< The model fits the (s-wcgbt) index very well, including a decline from
+---
+> The model fits the (\textsf{s-wcgbt}) index very well, including a decline from
+924c957
+< (s-wcgbt), the value was minimal, indicating that the index fits well
+---
+> (\textsf{s-wcgbt}), the value was minimal, indicating that the index fits well
+940c973
+< 2021 (s-wcgbt) where the largest haul in the history of the survey took
+---
+> 2021 (\textsf{s-wcgbt}) where the largest haul in the history of the survey took
+974c1007
+< to the 2019 assessment (baseing historical period on retention up
+---
+> to the 2019 assessment (baseing historical period on retention up %% baseing ? is this a typo ?
+990c1023
+< hess\_step, a recent option in ADMB and SS3, allowing to use the Hessian
+---
+> \textsf{hess\_step}, a recent option in ADMB and SS3, allowing to use the Hessian
+1024c1057
+<     parameters for the late (s-tri) period.
+---
+>     parameters for the late (\textsf{s-tri}) period.
+1026c1059
+<     Excluding (s-tri) 2004 observation.
+---
+>     Excluding (\textsf{s-tri}) 2004 observation.
+1028c1061
+<     Allowing (s-tri) selectivity to be dome-shaped.
+---
+>     Allowing (\textsf{s-tri}) selectivity to be dome-shaped.
+1030c1063
+<     Estimating extra standard deviation for the (s-wcgbt)
+---
+>     Estimating extra standard deviation for the (\textsf{s-wcgbt})
+1058c1091
+<     Estimating age-0 fraction female with no sex offset on the (s-wcgbt)
+---
+>     Estimating age-0 fraction female with no sex offset on the (\textsf{s-wcgbt})
+1095c1128
+< the (s-wcgbt) which had an applied weight of 74\% of the input sample
+---
+> the (\textsf{s-wcgbt}) which had an applied weight of 74\% of the input sample
+1111c1144
+< (s-wcgbt), the estimate was 47\% and the total likelihood was worse by
+---
+> (\textsf{s-wcgbt}), the estimate was 47\% and the total likelihood was worse by
+1138c1171
+< (s-wcgbt) index conducted on the U.S. West Coast. Estimated stock
+---
+> (\textsf{s-wcgbt}) index conducted on the U.S. West Coast. Estimated stock
+1145c1178
+< removing years of data starting from 2022 (i.e., ``Data -1 Years''
+---
+> removing years of data starting from 2022 (i.e., ``Data-1 Years''
+1149c1182
+< the fit to the (s-wcgbt), where the combination of the lower observed
+---
+> the fit to the (\textsf{s-wcgbt}), where the combination of the lower observed
+1176c1209
+< Figure X. The negative log-likelihood is optimized at a value of XX for
+---
+> Figure X. The negative $\log$-likelihood is optimized at a value of XX for
+1184c1217
+< log-likelihood for the base model declines with increasing steepness up
+---
+> $\log$-likelihood for the base model declines with increasing steepness up
+1190c1223
+< Pleuronectidae based on meta-analysis of flatfish steepness (Myers,
+---
+> \textit{Pleuronectidae} based on meta-analysis of flatfish steepness (Myers,
+1197c1230
+< log-likelihood across a range of female natural mortality values is
+---
+> $\log$-likelihood across a range of female natural mortality values is
+1263c1296,1297
+< https://doi.org/\url{https://doi.org/10.1016/j.fishres.2022.106477}.
+---
+> %https://doi.org/
+> \url{https://doi.org/10.1016/j.fishres.2022.106477}.

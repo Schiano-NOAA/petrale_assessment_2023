@@ -9,20 +9,25 @@ format: pdf
 #| echo: false 
 #| warning: false 
 #| eval: false 
-#| fig-cap: 'This is a great caption explaining a trend of recruitment of `r params$species` in `r params$year`'
+#| fig-cap: 'This is a great caption explaining a trend of recruitment of `r params$species` in `r params$year` test an in-line code `r fm`'
 #| fig-alt: ''
 satf::plot_recruitment(dat = output)
 ``` 
 
-```{r} 
+```{r, fig.cap = paste("This is a great caption explaining a trend of spawning biomass of", params$species, "in", params$year, " test in-line code", fm, ".")} 
 #| label: 'spawn_bio'
 #| echo: false 
 #| warning: false 
 #| eval: true 
-#| fig-cap: 'This is a great caption explaining a trend of recruitment of Petrale sole in 2023.'
 #| fig-alt: 'this describes the trend.'
 output <- read.csv('petrale_convert_output.csv')
 satf::plot_spawning_biomass(dat = output, ref_line = 'target', end_year = 2023)
 ``` 
+
+<!-- caption = "'test caption', fm, 'within the line'"
+test <- glue::glue(
+  "fig.cap = paste(", caption, ", 'end paste')"
+  )caption = "test caption 'fm' within the line"
+-->
 
 
